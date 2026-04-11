@@ -1,26 +1,79 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-heading: var(--font-jakarta);
+  --font-sans: var(--font-inter);
+
+  --color-blue: #1A5FE8;
+  --color-blue-light: #4D87F5;
+  --color-blue-soft: #EEF3FE;
+  --color-red: #E82418;
+  --color-red-light: #FF5247;
+  --color-red-soft: #FEF0EF;
+  --color-green: #18A84A;
+  --color-green-light: #2EC468;
+  --color-green-soft: #EDFBF2;
+  --color-surface: #F4F6F9;
+  --color-muted: #EFF1F5;
+  --color-border: #E2E6EC;
+  --color-border-mid: #C8CDD6;
+  --color-primary: #0D1117;
+  --color-secondary: #4A5260;
+  --color-tertiary: #8892A0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  color: #0D1117;
 }
+
+@utility glass-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 2px 16px rgba(26, 95, 232, 0.06);
+}
+
+@utility panel-blue {
+  border-left: 4px solid #1A5FE8;
+}
+@utility panel-red {
+  border-left: 4px solid #E82418;
+}
+@utility panel-green {
+  border-left: 4px solid #18A84A;
+}
+
+.hl {
+  background: linear-gradient(135deg, #1A5FE8, #4D87F5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hl-red {
+  background: linear-gradient(135deg, #E82418, #FF5247);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hl-green {
+  background: linear-gradient(135deg, #18A84A, #2EC468);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-section { animation: fadeUp 0.35s ease forwards; }
+.fade-delay-1 { animation-delay: 0.06s; opacity: 0; }
+.fade-delay-2 { animation-delay: 0.12s; opacity: 0; }
+.fade-delay-3 { animation-delay: 0.18s; opacity: 0; }
