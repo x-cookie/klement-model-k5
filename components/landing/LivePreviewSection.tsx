@@ -5,8 +5,26 @@ import { matchP, teamNames, teamData } from '@/lib/klement'
 import SectionLabel from '@/components/ui/SectionLabel'
 import WDLBar from '@/components/ui/WDLBar'
 import Btn from '@/components/ui/Btn'
+import { ChevronDown } from 'lucide-react'
 
 const allTeams = teamNames().sort()
+
+function TeamSelect({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const t = teamData(value)
+  return (
+    <div className="relative">
+      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xl pointer-events-none z-10">{t?.flag}</span>
+      <select
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        className="w-full pl-10 pr-8 py-3 text-sm font-semibold border border-[#E2E6EC] rounded-xl bg-white text-[#0D1117] focus:outline-none focus:border-blue appearance-none cursor-pointer"
+      >
+        {allTeams.map(t => <option key={t} value={t}>{t}</option>)}
+      </select>
+      <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8892A0] pointer-events-none" />
+    </div>
+  )
+}
 
 export default function LivePreviewSection() {
   const [teamA, setTeamA] = useState('Netherlands')
@@ -17,73 +35,73 @@ export default function LivePreviewSection() {
   const tB = teamData(teamB)
 
   return (
-    <section className="bg-[#F4F6F9] py-16">
+    <section className="bg-[#F4F6F9] py-20">
       <div className="max-w-6xl mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
-        >
-          <SectionLabel>Try It Now</SectionLabel>
-          <h2 className="font-heading font-800 text-2xl text-[#0D1117] mb-8">Pick any two teams.</h2>
-        </motion.div>
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
+            >
+              <SectionLabel>Live Predictor</SectionLabel>
+              <h2 className="font-heading font-800 text-3xl text-[#0D1117] mt-2 mb-4">
+                Pick any matchup.
+                <br />
+                <span className="hl">Get the odds instantly.</span>
+              </h2>
+              <p className="text-[#4A5260] leading-relaxed mb-6">
+                Default: Klement&apos;s predicted final. Change either team and the model
+                recalculates in real time — no server calls.
+              </p>
+              <Btn href="/lookup" variant="ghost" size="sm">
+                See full breakdown with factor analysis →
+              </Btn>
+            </motion.div>
+          </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.35, ease: 'easeOut', delay: 0.06 }}
-          className="max-w-[560px] mx-auto glass-card rounded-2xl p-6 space-y-5"
-        >
-          <div className="grid grid-cols-2 gap-3">
-            {([
-              { value: teamA, set: setTeamA, label: 'Team A', flag: tA?.flag ?? '' },
-              { value: teamB, set: setTeamB, label: 'Team B', flag: tB?.flag ?? '' },
-            ] as const).map(({ value, set, label, flag }) => (
-              <div key={label} className="space-y-1">
-                <label className="text-xs font-medium text-[#8892A0]">{label}</label>
-                <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-lg pointer-events-none">{flag}</span>
-                  <select
-                    value={value}
-                    onChange={e => set(e.target.value)}
-                    className="w-full pl-9 pr-3 py-2 text-sm font-medium border border-[#E2E6EC] rounded-lg bg-white text-[#0D1117] focus:outline-none focus:border-blue appearance-none cursor-pointer"
-                  >
-                    {allTeams.map(t => (
-                      <option key={t} value={t}>{t}</option>
-                    ))}
-                  </select>
-                </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, ease: 'easeOut', delay: 0.08 }}
+            className="glass-card rounded-2xl p-6 space-y-5"
+          >
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <label className="text-xs font-semibold text-[#8892A0] uppercase tracking-wide">Team A</label>
+                <TeamSelect value={teamA} onChange={setTeamA} />
               </div>
-            ))}
-          </div>
-
-          <div className="border-t border-[#E2E6EC] pt-4">
-            <WDLBar pA={pA} dr={dr} pB={pB} labelA={teamA} labelB={teamB} />
-          </div>
-
-          <div className="grid grid-cols-3 gap-2 text-center">
-            {[
-              { label: teamA, value: pA, cls: 'text-blue' },
-              { label: 'Draw', value: dr, cls: 'text-[#8892A0]' },
-              { label: teamB, value: pB, cls: 'text-red' },
-            ].map(({ label, value, cls }) => (
-              <div key={label} className="bg-[#F4F6F9] rounded-xl p-3">
-                <p className={`font-heading font-800 text-xl ${cls}`}>
-                  {(value * 100).toFixed(0)}%
-                </p>
-                <p className="text-xs text-[#8892A0] truncate">{label}</p>
+              <div className="space-y-1">
+                <label className="text-xs font-semibold text-[#8892A0] uppercase tracking-wide">Team B</label>
+                <TeamSelect value={teamB} onChange={setTeamB} />
               </div>
-            ))}
-          </div>
+            </div>
 
-          <div className="text-right">
-            <Btn href="/lookup" variant="ghost" size="sm">
-              See full breakdown →
-            </Btn>
-          </div>
-        </motion.div>
+            <div className="border-t border-[#F4F6F9] pt-4">
+              <WDLBar pA={pA} dr={dr} pB={pB} labelA={teamA} labelB={teamB} />
+            </div>
+
+            <div className="grid grid-cols-3 gap-2">
+              <div className="bg-blue-soft rounded-xl p-4 text-center border-l-4 border-l-blue">
+                <div className="text-2xl mb-1">{tA?.flag}</div>
+                <p className="font-heading font-800 text-2xl text-blue">{(pA * 100).toFixed(0)}%</p>
+                <p className="text-xs text-[#8892A0] truncate mt-0.5 font-medium">{teamA}</p>
+              </div>
+              <div className="bg-[#F4F6F9] rounded-xl p-4 text-center">
+                <div className="text-2xl mb-1">—</div>
+                <p className="font-heading font-800 text-2xl text-[#8892A0]">{(dr * 100).toFixed(0)}%</p>
+                <p className="text-xs text-[#8892A0] mt-0.5 font-medium">Draw</p>
+              </div>
+              <div className="bg-red-soft rounded-xl p-4 text-center border-l-4 border-l-red">
+                <div className="text-2xl mb-1">{tB?.flag}</div>
+                <p className="font-heading font-800 text-2xl text-red">{(pB * 100).toFixed(0)}%</p>
+                <p className="text-xs text-[#8892A0] truncate mt-0.5 font-medium">{teamB}</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   )
