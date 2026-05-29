@@ -3,6 +3,7 @@ import Link from 'next/link'
 import PageTransition from '@/components/ui/PageTransition'
 import SectionLabel from '@/components/ui/SectionLabel'
 import MatchCard from '@/components/match/MatchCard'
+import DecoBalls from '@/components/ui/DecoBalls'
 import { ROUNDS, ROUND_LABELS } from '@/lib/fixtures'
 
 const ROUND_ORDER = ['r32', 'r16', 'qf', 'sf', 'final'] as const
@@ -23,7 +24,8 @@ export default async function KnockoutPage({ params }: { params: Promise<{ round
 
   return (
     <PageTransition>
-      <div className="max-w-3xl mx-auto px-4 py-10 space-y-8">
+      <div className="relative max-w-3xl mx-auto px-4 py-10 space-y-8">
+        <DecoBalls variant={isFinal ? 'green' : 'mix'} />
         <div className="fade-section">
           <SectionLabel>Knockout Stage</SectionLabel>
           <h1 className={`font-heading font-800 text-3xl text-[#0D1117] ${isFinal ? 'hl-green' : ''}`}>

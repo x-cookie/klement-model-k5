@@ -6,6 +6,7 @@ import SectionLabel from '@/components/ui/SectionLabel'
 import TeamHeroCard from '@/components/team/TeamHeroCard'
 import FactorBreakdown from '@/components/team/FactorBreakdown'
 import H2HList from '@/components/team/H2HList'
+import DecoBalls from '@/components/ui/DecoBalls'
 
 const allTeams = teamNames().sort()
 
@@ -15,7 +16,8 @@ export default function TeamsPage() {
 
   return (
     <PageTransition>
-      <div className="max-w-3xl mx-auto px-4 py-10 space-y-8">
+      <div className="relative max-w-3xl mx-auto px-4 py-10 space-y-8">
+        <DecoBalls variant="green" />
         <div className="fade-section">
           <SectionLabel>Team Profile</SectionLabel>
           <h1 className="font-heading font-800 text-3xl text-[#0D1117]">

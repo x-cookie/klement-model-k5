@@ -1,12 +1,14 @@
 import PageTransition from '@/components/ui/PageTransition'
 import SectionLabel from '@/components/ui/SectionLabel'
 import GroupCard from '@/components/match/GroupCard'
+import DecoBalls from '@/components/ui/DecoBalls'
 import { GROUPS } from '@/lib/fixtures'
 
 export default function GroupsPage() {
   return (
     <PageTransition>
-      <div className="max-w-6xl mx-auto px-4 py-10 space-y-8">
+      <div className="relative max-w-6xl mx-auto px-4 py-10 space-y-8">
+        <DecoBalls variant="blue" />
         <div className="fade-section">
           <SectionLabel>Group Stage</SectionLabel>
           <h1 className="font-heading font-800 text-3xl text-[#0D1117]">

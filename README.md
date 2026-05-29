@@ -65,37 +65,59 @@ where Φ is the standard normal CDF and σ = 0.28 encodes the 45% unexplained va
 
 ## Model pipeline
 
+### 1 — Scoring (sc function)
+
 ```mermaid
 graph LR
-    subgraph Input["Input"]
-        TA[Team A]
-        TB[Team B]
+    subgraph Input["Team Input"]
+        GDP[GDP per capita]
+        POP[Population + LatAm flag]
+        TMP[Avg Temperature]
+        FIFA[FIFA Points]
+        HOST[Host nation]
     end
 
-    subgraph Score["Score — sc()"]
-        FG["fG(gdp) × 0.20"]
-        FP["fP(pop, latam) × 0.15"]
-        FT["fT(temp) × 0.15"]
-        FF["fF(fifa) × 0.45"]
-        FH["host × 0.05"]
+    subgraph Factors["Factor functions → 0..1"]
+        FG["fG(gdp) — inverted-U peak $35k"]
+        FP["fP(pop, latam) — log scale × 0.3"]
+        FT["fT(temp) — decay from 14°C"]
+        FF["fF(fifa) — linear 1400..2000"]
+        FH["host → 1 or 0"]
     end
 
-    subgraph Prob["Match — matchP()"]
-        DELTA["ΔS = S_A − S_B"]
-        DRAW["draw = clip(0.20·(1−0.3|z|))"]
+    subgraph Score["Weighted sum"]
+        SC["S = 0.45·FF + 0.20·FG + 0.15·FT + 0.15·FP + 0.05·FH"]
+    end
+
+    GDP --> FG --> SC
+    POP --> FP --> SC
+    TMP --> FT --> SC
+    FIFA --> FF --> SC
+    HOST --> FH --> SC
+```
+
+### 2 — Match probability and simulation (matchP / simResult / simKO)
+
+```mermaid
+graph LR
+    SA["S_A = sc(Team A)"] --> DELTA
+    SB["S_B = sc(Team B)"] --> DELTA
+
+    subgraph Probability["matchP()"]
+        DELTA["z = (S_A − S_B) / σ  where σ=0.28"]
+        DRAW["draw = clip(0.20·(1−0.3|z|), 0.05, 0.24)"]
         PHI["P(A) = Φ(z) × (1−draw)"]
+        DELTA --> DRAW --> PHI
     end
 
-    subgraph Sim["Simulation"]
-        SIM["simResult() → W/D/L"]
-        KO["simKO() → winner + pen"]
-        STAND["calcStandings() → pts table"]
+    subgraph Simulation["Simulation"]
+        SIM["simResult() — sample W/D/L"]
+        KO["simKO() — resolve draw by penalty"]
+        STAND["calcStandings() — pts table"]
+        PHI --> SIM
+        PHI --> KO
+        SIM --> STAND
     end
-
-    TA --> Score
-    TB --> Score
-    Score --> Prob
-    Prob --> Sim
 ```
 
 ---
@@ -106,7 +128,7 @@ graph LR
 |---|---|
 | Framework | Next.js (App Router, TypeScript) |
 | Styling | Tailwind CSS v4 — `@theme {}` tokens in CSS |
-| Fonts | Plus Jakarta Sans (headings) · Inter (body) via `next/font/google` |
+| Fonts | Plus Jakarta Sans (headings) via `next/font/google` · System font stack for body (SF Pro / Segoe UI) |
 | Animations | Framer Motion — page transitions + `whileInView` scroll reveals |
 | Model | Pure TypeScript in `lib/klement.ts` — no external math libraries |
 | Data | `lib/teams.json` — static, frozen at Klement's April 2026 values |
@@ -119,8 +141,8 @@ graph LR
 
 ```bash
 # 1. Clone
-git clone https://github.com/spooky-may/klement-model.git
-cd klement-model
+git clone https://github.com/x-cookie/kalsh-main.git
+cd kalsh-main
 
 # 2. Install dependencies
 npm install

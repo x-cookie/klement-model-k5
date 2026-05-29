@@ -2,11 +2,13 @@ import PageTransition from '@/components/ui/PageTransition'
 import SectionLabel from '@/components/ui/SectionLabel'
 import Tag from '@/components/ui/Tag'
 import Btn from '@/components/ui/Btn'
+import DecoBalls from '@/components/ui/DecoBalls'
 
 export default function AboutPage() {
   return (
     <PageTransition>
-      <div className="max-w-3xl mx-auto px-4 py-10 space-y-10">
+      <div className="relative max-w-3xl mx-auto px-4 py-10 space-y-10">
+        <DecoBalls variant="red" />
         <div className="fade-section">
           <SectionLabel>About the Model</SectionLabel>
           <h1 className="font-heading font-800 text-3xl text-[#0D1117]">

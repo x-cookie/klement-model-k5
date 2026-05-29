@@ -5,6 +5,7 @@ import { ROUNDS } from '@/lib/fixtures'
 import PageTransition from '@/components/ui/PageTransition'
 import SectionLabel from '@/components/ui/SectionLabel'
 import Btn from '@/components/ui/Btn'
+import DecoBalls from '@/components/ui/DecoBalls'
 
 type ChampCounts = Record<string, number>
 
@@ -48,7 +49,8 @@ export default function MCPage() {
 
   return (
     <PageTransition>
-      <div className="max-w-3xl mx-auto px-4 py-10 space-y-8">
+      <div className="relative max-w-3xl mx-auto px-4 py-10 space-y-8">
+        <DecoBalls variant="mix" />
         <div className="fade-section">
           <SectionLabel>Monte Carlo Simulator</SectionLabel>
           <h1 className="font-heading font-800 text-3xl text-[#0D1117]">
