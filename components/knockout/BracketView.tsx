@@ -31,7 +31,7 @@ function TeamRow({ name, isPick }: { name: string; isPick: boolean }) {
       borderLeft: isPick ? '2px solid var(--color-g)' : '2px solid transparent',
       boxSizing: 'border-box',
     }}>
-      <FlagImg name={name} h={11} emoji={t?.flag ?? '🏳️'} />
+      <FlagImg name={name} h={14} emoji={t?.flag ?? '🏳️'} />
       <span style={{
         fontSize: 7,
         color: isPick ? 'var(--color-g)' : 'var(--color-txt)',

@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { matchP, teamNames, teamData } from '@/lib/klement'
 import WDLBar from '@/components/ui/WDLBar'
 import FactorBreakdown from '@/components/team/FactorBreakdown'
+import TeamSelect from '@/components/ui/TeamSelect'
 import PixelParticles from '@/components/ui/PixelParticles'
 
 const allTeams = teamNames().sort()
@@ -43,13 +44,9 @@ export default function LookupPage() {
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: 16, alignItems: 'center', marginBottom: 24 }}>
-        <select className="px-select" value={teamA} onChange={e => setTeamA(e.target.value)}>
-          {allTeams.map(t => <option key={t} value={t}>{teamData(t)?.flag} {t}</option>)}
-        </select>
+        <TeamSelect teams={allTeams} value={teamA} onChange={setTeamA} />
         <div style={{ fontSize: 14, color: 'var(--color-r)', textAlign: 'center', fontWeight: 'bold', padding: '0 8px' }}>VS</div>
-        <select className="px-select" value={teamB} onChange={e => setTeamB(e.target.value)}>
-          {allTeams.map(t => <option key={t} value={t}>{teamData(t)?.flag} {t}</option>)}
-        </select>
+        <TeamSelect teams={allTeams} value={teamB} onChange={setTeamB} />
       </div>
 
       <WDLBar pA={pA} dr={dr} pB={pB} labelA={teamA} labelB={teamB} />

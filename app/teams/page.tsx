@@ -4,6 +4,7 @@ import { teamNames, teamData, sc } from '@/lib/klement'
 import FactorBreakdown from '@/components/team/FactorBreakdown'
 import H2HList from '@/components/team/H2HList'
 import FlagImg from '@/components/ui/FlagImg'
+import TeamSelect from '@/components/ui/TeamSelect'
 import PixelParticles from '@/components/ui/PixelParticles'
 
 const allTeams = teamNames().sort()
@@ -64,14 +65,12 @@ export default function TeamsPage() {
 
       {tab === 'profile' && <>
 
-      <select
-        className="px-select"
+      <TeamSelect
+        teams={allTeams}
         value={selected}
-        onChange={e => setSelected(e.target.value)}
+        onChange={setSelected}
         style={{ maxWidth: 360, marginBottom: 20 }}
-      >
-        {allTeams.map(t => <option key={t} value={t}>{teamData(t)?.flag} {t}</option>)}
-      </select>
+      />
 
       {/* Country banner */}
       <div style={{
