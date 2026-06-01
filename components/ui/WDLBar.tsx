@@ -19,9 +19,9 @@ export default function WDLBar({ pA, dr, pB, labelA = 'WIN', labelB = 'WIN' }: P
         <div className="wdl-b" style={{ flex: pBp }}>{pBp}%</div>
       </div>
       <div className="wdl-labels">
-        <span style={{ fontSize: 6, color: 'var(--color-r)' }}>{labelA} {pAp}%</span>
-        <span style={{ fontSize: 6, color: 'var(--color-muted)', textAlign: 'center' }}>DRAW {drp}%</span>
-        <span style={{ fontSize: 6, color: 'var(--color-b)', textAlign: 'right' }}>{labelB} {pBp}%</span>
+        <span style={{ fontSize: 9, color: 'var(--color-r)' }}>{labelA} {pAp}%</span>
+        <span style={{ fontSize: 9, color: 'var(--color-muted)', textAlign: 'center' }}>DRAW {drp}%</span>
+        <span style={{ fontSize: 9, color: 'var(--color-b)', textAlign: 'right' }}>{labelB} {pBp}%</span>
       </div>
       <div className="marching" />
     </div>

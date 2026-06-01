@@ -21,13 +21,13 @@ export default function H2HList({ name }: Props) {
         const t = teamData(opp)
         return (
           <div key={opp} className="h2h-row">
-            <div style={{ fontSize: 7 }}>{teamData(name)?.flag} {name.slice(0, 8)}</div>
+            <div style={{ fontSize: 10 }}>{teamData(name)?.flag} {name.slice(0, 8)}</div>
             <div className="h2h-bar">
               <div className="h2h-a" style={{ flex: pAp }}>{pAp}%</div>
               <div className="h2h-d" style={{ flex: drp }}>{drp}%</div>
               <div className="h2h-b" style={{ flex: pBp }}>{pBp}%</div>
             </div>
-            <div style={{ fontSize: 6, color: 'var(--color-muted)', textAlign: 'right' }}>
+            <div style={{ fontSize: 9, color: 'var(--color-muted)', textAlign: 'right' }}>
               vs {t?.flag} {opp.slice(0, 8)}
             </div>
           </div>

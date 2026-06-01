@@ -13,7 +13,7 @@ export default function AboutPage() {
   return (
     <div className="sec page-enter">
       <div className="section-title">ABOUT THE MODEL</div>
-      <div style={{ fontSize: 7, color: 'var(--color-muted)', lineHeight: 2.4, marginBottom: 16 }}>
+      <div style={{ fontSize: 10, color: 'var(--color-muted)', lineHeight: 2.4, marginBottom: 28 }}>
         BUILT BY JOACHIM KLEMENT OF PANMURE LIBERUM.<br />
         BASED ON HOFFMANN, GING &amp; RAMASAMY (2002).<br /><br />
         THE MODEL EXPLAINS 55% OF VARIANCE BETWEEN TEAMS.<br />
@@ -21,46 +21,46 @@ export default function AboutPage() {
       </div>
 
       <div className="about-formula">
-        <div style={{ fontSize: 7, color: 'var(--color-b)', marginBottom: 8, letterSpacing: 1 }}>FORMULA</div>
-        <div style={{ fontSize: 8, color: 'var(--color-txt)', lineHeight: 2.4 }}>
+        <div style={{ fontSize: 10, color: 'var(--color-b)', marginBottom: 16, letterSpacing: 1 }}>FORMULA</div>
+        <div style={{ fontSize: 11, color: 'var(--color-txt)', lineHeight: 2.6 }}>
           S = 0.45·FIFA<br />
           &nbsp;&nbsp;&nbsp;+ 0.20·GDP<br />
           &nbsp;&nbsp;&nbsp;+ 0.15·TEMP<br />
           &nbsp;&nbsp;&nbsp;+ 0.15·POP<br />
           &nbsp;&nbsp;&nbsp;+ 0.05·HOST
         </div>
-        <div style={{ fontSize: 7, color: 'var(--color-muted)', marginTop: 8, lineHeight: 2 }}>
+        <div style={{ fontSize: 9, color: 'var(--color-muted)', marginTop: 12, lineHeight: 2.2 }}>
           P(WIN) = Φ((S_A − S_B) / 0.28) × (1 − DRAW)
         </div>
       </div>
 
-      <div className="section-title" style={{ marginTop: 20 }}>FACTOR WEIGHTS</div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
+      <div className="section-title" style={{ marginTop: 32 }}>FACTOR WEIGHTS</div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 18, marginBottom: 32 }}>
         {factors.map(({ label, pct, color }) => (
-          <div key={label} style={{ display: 'grid', gridTemplateColumns: '110px 1fr 32px', alignItems: 'center', gap: 10 }}>
-            <div style={{ fontSize: 7, color: 'var(--color-muted)' }}>{label}</div>
+          <div key={label} style={{ display: 'grid', gridTemplateColumns: '160px 1fr 48px', alignItems: 'center', gap: 16 }}>
+            <div style={{ fontSize: 10, color: 'var(--color-muted)' }}>{label}</div>
             <PixelBar value={pct} color={color} />
-            <div style={{ fontSize: 7, color, textAlign: 'right' }}>{pct}%</div>
+            <div style={{ fontSize: 10, color, textAlign: 'right' }}>{pct}%</div>
           </div>
         ))}
       </div>
 
       <div className="about-quote">
-        <div style={{ fontSize: 6, color: 'var(--color-r)', lineHeight: 2.4 }}>
+        <div style={{ fontSize: 10, color: 'var(--color-r)', lineHeight: 2.6 }}>
           &ldquo;I BUILT THIS MODEL TO PROVE ECONOMETRICS<br />
           CAN&apos;T PREDICT FOOTBALL. THEN IT DID.&rdquo;<br /><br />
           — JOACHIM KLEMENT, PANMURE LIBERUM
         </div>
       </div>
 
-      <div style={{ marginTop: 20, display: 'flex', gap: 12 }}>
+      <div style={{ marginTop: 32, display: 'flex', gap: 16 }}>
         <Link href="/lookup" className="px-btn" style={{
-          fontFamily: 'inherit', fontSize: 8, padding: '10px 16px',
+          fontFamily: 'inherit', fontSize: 11, padding: '14px 28px',
           backgroundColor: 'var(--color-r)', color: '#fff', border: 'none',
           boxShadow: '4px 4px 0 var(--color-r-sh)', textDecoration: 'none', display: 'inline-block',
         }}>▶ TRY THE PREDICTOR</Link>
         <Link href="/mc" className="px-btn" style={{
-          fontFamily: 'inherit', fontSize: 8, padding: '10px 16px',
+          fontFamily: 'inherit', fontSize: 11, padding: '14px 28px',
           backgroundColor: 'var(--color-surf)', color: 'var(--color-txt)',
           border: '2px solid var(--color-brd2)', boxShadow: '4px 4px 0 var(--color-brd)',
           textDecoration: 'none', display: 'inline-block',

@@ -16,7 +16,7 @@ export default function TeamHeroCard({ name }: Props) {
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
         <span style={{ fontSize: 48 }}>{t.flag}</span>
         <div>
-          <h1 style={{ fontSize: 14, color: 'var(--color-txt)', marginBottom: 8 }}>{name}</h1>
+          <h1 style={{ fontSize: 20, color: 'var(--color-txt)', marginBottom: 8 }}>{name}</h1>
           <div style={{ display: 'flex', gap: 6 }}>
             <Tag variant="gray">{t.conf}</Tag>
             {t.host && <Tag variant="green">HOST</Tag>}
@@ -32,8 +32,8 @@ export default function TeamHeroCard({ name }: Props) {
           { label: 'GDP/cap', value: `$${t.gdp}k`, color: 'var(--color-txt)' },
         ].map(({ label, value, color }) => (
           <div key={label} style={{ backgroundColor: 'var(--color-surf)', border: '1px solid var(--color-brd)', padding: 12, textAlign: 'center' }}>
-            <p style={{ fontSize: 14, color, marginBottom: 4 }}>{value}</p>
-            <p style={{ fontSize: 6, color: 'var(--color-muted)' }}>{label}</p>
+            <p style={{ fontSize: 20, color, marginBottom: 4 }}>{value}</p>
+            <p style={{ fontSize: 9, color: 'var(--color-muted)' }}>{label}</p>
           </div>
         ))}
       </div>

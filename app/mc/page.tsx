@@ -53,25 +53,24 @@ export default function MCPage() {
   return (
     <div className="sec page-enter">
       <div className="section-title">MONTE CARLO SIMULATOR</div>
-      <div style={{ fontSize: 7, color: 'var(--color-muted)', lineHeight: 2, marginBottom: 16 }}>
-        EACH SIMULATION RUNS THE FULL BRACKET<br />
-        WITH W/D/L PROBABILITIES FROM THE MODEL.
+      <div style={{ fontSize: 10, color: 'var(--color-muted)', lineHeight: 2.2, marginBottom: 28 }}>
+        EACH SIMULATION RUNS THE FULL BRACKET WITH W/D/L PROBABILITIES FROM THE MODEL.
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16, flexWrap: 'wrap' }}>
-        <div style={{ fontSize: 7, color: 'var(--color-muted)' }}>SIMULATIONS</div>
-        <div style={{ fontSize: 14, color: 'var(--color-b)' }}>{n.toLocaleString()}</div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 32, flexWrap: 'wrap' }}>
+        <div style={{ fontSize: 10, color: 'var(--color-muted)' }}>SIMULATIONS</div>
+        <div style={{ fontSize: 22, color: 'var(--color-b)' }}>{n.toLocaleString()}</div>
         <input
           type="range" min={100} max={5000} step={100} value={n}
           onChange={e => setN(Number(e.target.value))}
-          style={{ accentColor: 'var(--color-g)', width: 120 }}
+          style={{ accentColor: 'var(--color-g)', width: 160 }}
         />
         <button
           className="px-btn"
           onClick={run}
           disabled={running}
           style={{
-            fontFamily: 'inherit', fontSize: 8, padding: '10px 16px',
+            fontFamily: 'inherit', fontSize: 11, padding: '14px 24px',
             backgroundColor: 'var(--color-g)', color: '#fff', border: 'none',
             boxShadow: '4px 4px 0 var(--color-g-sh)',
           }}
@@ -87,20 +86,19 @@ export default function MCPage() {
             const pct = Math.round((count / n) * 100)
             return (
               <div key={team} className="mc-row">
-                <div style={{ fontSize: 7, color: 'var(--color-muted)', textAlign: 'center' }}>{i + 1}</div>
-                <div style={{ fontSize: 7 }}>{t?.flag} {team.slice(0, 10)}</div>
+                <div style={{ fontSize: 9, color: 'var(--color-muted)', textAlign: 'center' }}>{i + 1}</div>
+                <div style={{ fontSize: 10 }}>{t?.flag} {team}</div>
                 <PixelBar value={Math.round((count / maxCount) * 100)} color={BAR_COLORS[i]} />
-                <div style={{ fontSize: 7, color: 'var(--color-g)', textAlign: 'right' }}>{pct}%</div>
+                <div style={{ fontSize: 10, color: 'var(--color-g)', textAlign: 'right' }}>{pct}%</div>
               </div>
             )
           })}
-          <div style={{ fontSize: 6, color: 'var(--color-muted)', marginTop: 12, lineHeight: 2 }}>
-            {n.toLocaleString()} SIMULATIONS COMPLETE.<br />
-            45% VARIANCE IS UNMODELLED NOISE.
+          <div style={{ fontSize: 9, color: 'var(--color-muted)', marginTop: 20, lineHeight: 2.2 }}>
+            {n.toLocaleString()} SIMULATIONS COMPLETE. 45% VARIANCE IS UNMODELLED NOISE.
           </div>
         </>
       ) : (
-        <div style={{ fontSize: 7, color: 'var(--color-muted)', padding: '12px 0' }}>
+        <div style={{ fontSize: 10, color: 'var(--color-muted)', padding: '20px 0' }}>
           PRESS RUN TO SIMULATE THE TOURNAMENT...
         </div>
       )}

@@ -19,23 +19,18 @@ export default async function KnockoutPage({ params }: { params: Promise<{ round
 
   return (
     <div className="page-enter">
-      {/* Round tabs */}
       <div className="ko-tabs">
         {ROUND_ORDER.map(r => (
-          <Link
-            key={r}
-            href={`/knockout/${r}`}
-            className={`ko-tab${round === r ? ' active' : ''}`}
-          >
+          <Link key={r} href={`/knockout/${r}`} className={`ko-tab${round === r ? ' active' : ''}`}>
             {r.toUpperCase()}
           </Link>
         ))}
       </div>
 
-      <div style={{ padding: 16 }}>
-        <div style={{ fontSize: 7, color: 'var(--color-muted)', marginBottom: 14, letterSpacing: 1 }}>
+      <div style={{ padding: '36px 36px' }}>
+        <div style={{ fontSize: 10, color: 'var(--color-muted)', marginBottom: 24, letterSpacing: 1 }}>
           {ROUND_LABELS[round].toUpperCase()}
-          {isFinal && <span style={{ color: 'var(--color-g)', marginLeft: 8 }}>🏆 KLEMENT&apos;S HEADLINE CALL</span>}
+          {isFinal && <span style={{ color: 'var(--color-g)', marginLeft: 12 }}>🏆 KLEMENT&apos;S HEADLINE CALL</span>}
         </div>
 
         {matches.map((m, i) => {
@@ -51,28 +46,25 @@ export default async function KnockoutPage({ params }: { params: Promise<{ round
             <div
               key={i}
               className="ko-match"
-              style={isFinal ? { border: `2px solid var(--color-g)`, boxShadow: `4px 4px 0 var(--color-g-sh)` } : {}}
+              style={isFinal ? { border: '2px solid var(--color-g)', boxShadow: '4px 4px 0 var(--color-g-sh)' } : {}}
             >
-              {/* Team A */}
               <div>
-                <span style={{ fontSize: 16, display: 'block' }}>{tA?.flag ?? '🏳'}</span>
-                <div style={{ fontSize: 7, lineHeight: 2 }}>{m.teamA}</div>
-                <div style={{ fontSize: 5, color: 'var(--color-muted)' }}>{tA?.conf}</div>
+                <span style={{ fontSize: 28, display: 'block', marginBottom: 6 }}>{tA?.flag ?? '🏳'}</span>
+                <div style={{ fontSize: 10, lineHeight: 1.8 }}>{m.teamA}</div>
+                <div style={{ fontSize: 9, color: 'var(--color-muted)', marginTop: 2 }}>{tA?.conf}</div>
                 {pickIsA && <span className="k-badge">K✓</span>}
               </div>
 
-              {/* WDL mini bar */}
               <div className="ko-mini-bar">
-                <div style={{ flex: pAp, backgroundColor: 'var(--color-r)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 6 }}>{pAp}%</div>
-                <div style={{ flex: drp, backgroundColor: 'var(--color-surf)', color: 'var(--color-muted)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 6, borderLeft: '1px solid var(--color-brd)', borderRight: '1px solid var(--color-brd)' }}>{drp}%</div>
-                <div style={{ flex: pBp, backgroundColor: 'var(--color-b)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 6 }}>{pBp}%</div>
+                <div style={{ flex: pAp, backgroundColor: 'var(--color-r)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9 }}>{pAp}%</div>
+                <div style={{ flex: drp, backgroundColor: 'var(--color-surf)', color: 'var(--color-muted)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, borderLeft: '1px solid var(--color-brd)', borderRight: '1px solid var(--color-brd)' }}>{drp}%</div>
+                <div style={{ flex: pBp, backgroundColor: 'var(--color-b)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9 }}>{pBp}%</div>
               </div>
 
-              {/* Team B */}
               <div style={{ textAlign: 'right' }}>
-                <span style={{ fontSize: 16, display: 'block', textAlign: 'right' }}>{tB?.flag ?? '🏳'}</span>
-                <div style={{ fontSize: 7, lineHeight: 2 }}>{m.teamB}</div>
-                <div style={{ fontSize: 5, color: 'var(--color-muted)' }}>{tB?.conf}</div>
+                <span style={{ fontSize: 28, display: 'block', marginBottom: 6 }}>{tB?.flag ?? '🏳'}</span>
+                <div style={{ fontSize: 10, lineHeight: 1.8 }}>{m.teamB}</div>
+                <div style={{ fontSize: 9, color: 'var(--color-muted)', marginTop: 2 }}>{tB?.conf}</div>
                 {!pickIsA && m.k === m.teamB && <span className="k-badge">K✓</span>}
               </div>
             </div>

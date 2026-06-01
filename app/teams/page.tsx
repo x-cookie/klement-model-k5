@@ -19,28 +19,27 @@ export default function TeamsPage() {
         className="px-select"
         value={selected}
         onChange={e => setSelected(e.target.value)}
-        style={{ marginBottom: 16 }}
+        style={{ maxWidth: 360, marginBottom: 28 }}
       >
         {allTeams.map(t => <option key={t} value={t}>{teamData(t)?.flag} {t}</option>)}
       </select>
 
-      {/* Score cards — 3 col */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10, marginBottom: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginBottom: 32 }}>
         {[
           { num: score.toFixed(3), label: 'MODEL SCORE', color: 'var(--color-g)', sh: 'var(--color-g-sh)' },
           { num: team?.fifa ?? '',  label: 'FIFA PTS',    color: 'var(--color-b)', sh: 'var(--color-b-sh)' },
           { num: `$${team?.gdp}k`, label: 'GDP/CAPITA',  color: 'var(--color-r)', sh: 'var(--color-r-sh)' },
         ].map(({ num, label, color, sh }) => (
           <div key={label} className="score-card">
-            <span style={{ fontSize: 16, color, textShadow: `2px 2px 0 ${sh}`, display: 'block', marginBottom: 4 }}>{num}</span>
-            <span style={{ fontSize: 6, color: 'var(--color-muted)' }}>{label}</span>
+            <span style={{ fontSize: 22, color, textShadow: `2px 2px 0 ${sh}`, display: 'block', marginBottom: 8 }}>{num}</span>
+            <span style={{ fontSize: 9, color: 'var(--color-muted)' }}>{label}</span>
           </div>
         ))}
       </div>
 
       <FactorBreakdown name={selected} />
 
-      <div style={{ marginTop: 16 }}>
+      <div style={{ marginTop: 32 }}>
         <H2HList name={selected} />
       </div>
     </div>
