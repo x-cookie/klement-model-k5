@@ -1,4 +1,6 @@
 import { matchP, teamNames, sc, teamData } from '@/lib/klement'
+import WDLBar from '@/components/ui/WDLBar'
+import FlagImg from '@/components/ui/FlagImg'
 
 interface Props {
   name: string
@@ -9,6 +11,8 @@ export default function H2HList({ name }: Props) {
     .filter(t => t !== name)
     .sort((a, b) => sc(b) - sc(a))
     .slice(0, 6)
+
+  const me = teamData(name)
 
   return (
     <div>
@@ -21,14 +25,18 @@ export default function H2HList({ name }: Props) {
         const t = teamData(opp)
         return (
           <div key={opp} className="h2h-row">
-            <div style={{ fontSize: 10 }}>{teamData(name)?.flag} {name.slice(0, 8)}</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 9 }}>
+              <FlagImg name={name} h={16} emoji={me?.flag ?? '🏳️'} />
+              {name.slice(0, 10)}
+            </div>
             <div className="h2h-bar">
               <div className="h2h-a" style={{ flex: pAp }}>{pAp}%</div>
               <div className="h2h-d" style={{ flex: drp }}>{drp}%</div>
               <div className="h2h-b" style={{ flex: pBp }}>{pBp}%</div>
             </div>
-            <div style={{ fontSize: 9, color: 'var(--color-muted)', textAlign: 'right' }}>
-              vs {t?.flag} {opp.slice(0, 8)}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 9, justifyContent: 'flex-end', color: 'var(--color-muted)' }}>
+              {opp.slice(0, 10)}
+              <FlagImg name={opp} h={16} emoji={t?.flag ?? '🏳️'} />
             </div>
           </div>
         )

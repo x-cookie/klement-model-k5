@@ -1,5 +1,6 @@
 import { matchP, teamData } from '@/lib/klement'
 import WDLBar from '@/components/ui/WDLBar'
+import FlagImg from '@/components/ui/FlagImg'
 
 interface Props {
   teamA: string
@@ -20,15 +21,15 @@ export default function MatchCard({ teamA, teamB, k, isFinal = false }: Props) {
   return (
     <div style={{ ...cardStyle, padding: 16, backgroundColor: 'var(--color-bg)' }}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr 1fr', gap: 8, alignItems: 'center', marginBottom: 10 }}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 4 }}>
-          <span style={{ fontSize: 24 }}>{tA?.flag ?? '🏳'}</span>
-          <span style={{ fontSize: 7, color: k === teamA ? 'var(--color-g)' : 'var(--color-txt)' }}>{teamA}</span>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6 }}>
+          <FlagImg name={teamA} h={28} emoji={tA?.flag ?? '🏳️'} />
+          <span style={{ fontSize: 9, color: k === teamA ? 'var(--color-g)' : 'var(--color-txt)' }}>{teamA}</span>
           {k === teamA && <span className="k-badge">K✓</span>}
         </div>
-        <div style={{ textAlign: 'center', fontSize: 7, color: 'var(--color-muted)' }}>VS</div>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4 }}>
-          <span style={{ fontSize: 24 }}>{tB?.flag ?? '🏳'}</span>
-          <span style={{ fontSize: 7, color: k === teamB ? 'var(--color-g)' : 'var(--color-txt)' }}>{teamB}</span>
+        <div style={{ textAlign: 'center', fontSize: 9, color: 'var(--color-muted)' }}>VS</div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 6 }}>
+          <FlagImg name={teamB} h={28} emoji={tB?.flag ?? '🏳️'} />
+          <span style={{ fontSize: 9, color: k === teamB ? 'var(--color-g)' : 'var(--color-txt)' }}>{teamB}</span>
           {k === teamB && <span className="k-badge">K✓</span>}
         </div>
       </div>

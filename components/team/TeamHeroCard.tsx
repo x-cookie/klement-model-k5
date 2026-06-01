@@ -1,5 +1,6 @@
 import { sc, teamData } from '@/lib/klement'
 import Tag from '@/components/ui/Tag'
+import FlagImg from '@/components/ui/FlagImg'
 
 interface Props {
   name: string
@@ -14,7 +15,7 @@ export default function TeamHeroCard({ name }: Props) {
   return (
     <div style={{ border: '1px solid var(--color-b)', borderLeft: '4px solid var(--color-b)', boxShadow: '4px 4px 0 var(--color-b-sh)', padding: 20, backgroundColor: 'var(--color-bg)' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
-        <span style={{ fontSize: 48 }}>{t.flag}</span>
+        <FlagImg name={name} h={56} emoji={t.flag} />
         <div>
           <h1 style={{ fontSize: 20, color: 'var(--color-txt)', marginBottom: 8 }}>{name}</h1>
           <div style={{ display: 'flex', gap: 6 }}>
@@ -27,12 +28,12 @@ export default function TeamHeroCard({ name }: Props) {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
         {[
-          { label: 'Model Score', value: score.toFixed(3), color: 'var(--color-b)' },
-          { label: 'FIFA Pts', value: String(t.fifa), color: 'var(--color-txt)' },
-          { label: 'GDP/cap', value: `$${t.gdp}k`, color: 'var(--color-txt)' },
-        ].map(({ label, value, color }) => (
+          { label: 'Model Score', value: score.toFixed(3), color: 'var(--color-g)', sh: 'var(--color-g-sh)' },
+          { label: 'FIFA Pts', value: String(t.fifa), color: 'var(--color-txt)', sh: 'var(--color-brd)' },
+          { label: 'GDP/cap', value: `$${t.gdp}k`, color: 'var(--color-txt)', sh: 'var(--color-brd)' },
+        ].map(({ label, value, color, sh }) => (
           <div key={label} style={{ backgroundColor: 'var(--color-surf)', border: '1px solid var(--color-brd)', padding: 12, textAlign: 'center' }}>
-            <p style={{ fontSize: 20, color, marginBottom: 4 }}>{value}</p>
+            <p style={{ fontSize: 18, color, textShadow: `2px 2px 0 ${sh}`, marginBottom: 4 }}>{value}</p>
             <p style={{ fontSize: 9, color: 'var(--color-muted)' }}>{label}</p>
           </div>
         ))}

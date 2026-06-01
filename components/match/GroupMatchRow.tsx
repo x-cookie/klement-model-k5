@@ -1,4 +1,5 @@
 import { matchP, teamData } from '@/lib/klement'
+import FlagImg from '@/components/ui/FlagImg'
 import type { WDL } from '@/types'
 
 interface Props {
@@ -21,12 +22,12 @@ export default function GroupMatchRow({ teamA, teamB, result }: Props) {
       display: 'flex',
       alignItems: 'center',
       gap: 8,
-      padding: '6px 8px',
+      padding: '6px 10px',
       fontSize: 7,
       borderBottom: '1px solid var(--color-brd)',
     }}>
-      <span style={{ fontSize: 14 }}>{tA?.flag}</span>
-      <span style={{ color: 'var(--color-txt)', minWidth: 64 }}>{teamA}</span>
+      <FlagImg name={teamA} h={12} emoji={tA?.flag ?? '🏳️'} />
+      <span style={{ color: 'var(--color-txt)', minWidth: 64 }}>{teamA.slice(0, 10)}</span>
       {result ? (
         <span style={{ flex: 1, textAlign: 'center', color: resultColor, fontWeight: 'bold' }}>{resultLabel}</span>
       ) : (
@@ -36,8 +37,8 @@ export default function GroupMatchRow({ teamA, teamB, result }: Props) {
           <span style={{ color: 'var(--color-b)' }}>{fmtPct(pB)}</span>
         </div>
       )}
-      <span style={{ color: 'var(--color-txt)', minWidth: 64, textAlign: 'right' }}>{teamB}</span>
-      <span style={{ fontSize: 14 }}>{tB?.flag}</span>
+      <span style={{ color: 'var(--color-txt)', minWidth: 64, textAlign: 'right' }}>{teamB.slice(0, 10)}</span>
+      <FlagImg name={teamB} h={12} emoji={tB?.flag ?? '🏳️'} />
     </div>
   )
 }

@@ -3,6 +3,7 @@ import { useState, useMemo } from 'react'
 import { simResult, calcStandings, teamData } from '@/lib/klement'
 import type { MatchResult } from '@/types'
 import GroupMatchRow from './GroupMatchRow'
+import FlagImg from '@/components/ui/FlagImg'
 
 interface Props {
   group: string
@@ -47,7 +48,8 @@ export default function GroupCard({ group, teams }: Props) {
               <tr key={s.team}>
                 <td>
                   {advancing && <span className="qual-dot" />}
-                  {t?.flag} {s.team.slice(0, 8)}
+                  <FlagImg name={s.team} h={14} emoji={t?.flag ?? '🏳️'} />
+                  {' '}{s.team.slice(0, 10)}
                 </td>
                 <td>{s.w}</td>
                 <td>{s.d}</td>
@@ -65,7 +67,7 @@ export default function GroupCard({ group, teams }: Props) {
         onClick={() => setOpen(o => !o)}
         style={{
           width: '100%', padding: '6px 10px', textAlign: 'left',
-          fontSize: 9, color: 'var(--color-muted)', backgroundColor: 'none',
+          fontSize: 9, color: 'var(--color-muted)', backgroundColor: 'transparent',
           border: 'none', borderTop: '1px solid var(--color-brd)',
           cursor: 'pointer', fontFamily: 'inherit',
         }}

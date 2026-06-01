@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { matchP, teamData } from '@/lib/klement'
 import { ROUNDS, ROUND_LABELS } from '@/lib/fixtures'
 import PixelParticles from '@/components/ui/PixelParticles'
+import FlagImg from '@/components/ui/FlagImg'
 
 const ROUND_ORDER = ['r32', 'r16', 'qf', 'sf', 'final'] as const
 type Round = typeof ROUND_ORDER[number]
@@ -53,7 +54,9 @@ export default async function KnockoutPage({ params }: { params: Promise<{ round
               style={isFinal ? { border: '2px solid var(--color-g)', boxShadow: '4px 4px 0 var(--color-g-sh)' } : {}}
             >
               <div>
-                <span style={{ fontSize: 22, display: 'block', marginBottom: 6 }}>{tA?.flag ?? '🏳'}</span>
+                <div style={{ marginBottom: 6 }}>
+                  <FlagImg name={m.teamA} h={28} emoji={tA?.flag ?? '🏳️'} />
+                </div>
                 <div style={{ fontSize: 10, lineHeight: 1.8 }}>{m.teamA}</div>
                 <div style={{ fontSize: 9, color: 'var(--color-muted)', marginTop: 2 }}>{tA?.conf}</div>
                 {pickIsA && <span className="k-badge">K✓</span>}
@@ -66,7 +69,9 @@ export default async function KnockoutPage({ params }: { params: Promise<{ round
               </div>
 
               <div style={{ textAlign: 'right' }}>
-                <span style={{ fontSize: 22, display: 'block', marginBottom: 6 }}>{tB?.flag ?? '🏳'}</span>
+                <div style={{ marginBottom: 6, display: 'flex', justifyContent: 'flex-end' }}>
+                  <FlagImg name={m.teamB} h={28} emoji={tB?.flag ?? '🏳️'} />
+                </div>
                 <div style={{ fontSize: 10, lineHeight: 1.8 }}>{m.teamB}</div>
                 <div style={{ fontSize: 9, color: 'var(--color-muted)', marginTop: 2 }}>{tB?.conf}</div>
                 {!pickIsA && m.k === m.teamB && <span className="k-badge">K✓</span>}
