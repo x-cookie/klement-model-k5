@@ -12,7 +12,7 @@ export default function TeamsPage() {
   const score = sc(selected)
 
   return (
-    <div className="sec">
+    <div className="sec page-enter">
       <div className="section-title">TEAM PROFILE</div>
 
       <select

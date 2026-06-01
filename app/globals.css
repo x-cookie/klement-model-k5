@@ -21,12 +21,24 @@
 
 *, *::before, *::after { box-sizing: border-box; border-radius: 0 !important; }
 
+/* Body = bezel — off-white so the content container is visually distinct */
+html, body { min-height: 100%; }
 body {
   font-family: var(--font-pixel), monospace;
   font-size: 10px;
   line-height: 1.8;
-  background-color: var(--color-bg);
+  background-color: var(--color-surf);
   color: var(--color-txt);
+}
+
+/* Content container — the "game window" */
+.page-wrap {
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: var(--color-bg);
+  border-left: 2px solid var(--color-brd);
+  border-right: 2px solid var(--color-brd);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -34,11 +46,13 @@ body {
 
 main { flex: 1; }
 
-/* Content width constraint — matches reference-ui.jsx maxWidth: 680 */
-.page-wrap {
-  max-width: 680px;
-  width: 100%;
-  margin: 0 auto;
+/* Page-level enter animation — fires on every route mount */
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-enter {
+  animation: pageEnter 0.2s ease-out forwards;
 }
 
 /* ── Pixel double-outline borders ── */

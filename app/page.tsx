@@ -11,7 +11,7 @@ const factors = [
 
 export default function LandingPage() {
   return (
-    <div>
+    <div className="page-enter">
       {/* Hero */}
       <div className="sec" style={{ position: 'relative', overflow: 'hidden' }}>
         <div className="dot-grid" style={{ position: 'absolute', inset: 0 }} />

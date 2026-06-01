@@ -11,7 +11,7 @@ const factors = [
 
 export default function AboutPage() {
   return (
-    <div className="sec">
+    <div className="sec page-enter">
       <div className="section-title">ABOUT THE MODEL</div>
       <div style={{ fontSize: 7, color: 'var(--color-muted)', lineHeight: 2.4, marginBottom: 16 }}>
         BUILT BY JOACHIM KLEMENT OF PANMURE LIBERUM.<br />

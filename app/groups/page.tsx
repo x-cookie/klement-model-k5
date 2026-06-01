@@ -3,7 +3,7 @@ import { GROUPS } from '@/lib/fixtures'
 
 export default function GroupsPage() {
   return (
-    <div className="sec">
+    <div className="sec page-enter">
       <div className="section-title">GROUP STAGE — 12 GROUPS</div>
       <div style={{ fontSize: 6, color: 'var(--color-muted)', marginBottom: 14, lineHeight: 2 }}>
         <span className="qual-dot" /> = QUALIFIED TO ROUND OF 32

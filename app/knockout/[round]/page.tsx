@@ -18,7 +18,7 @@ export default async function KnockoutPage({ params }: { params: Promise<{ round
   const isFinal = round === 'final'
 
   return (
-    <div>
+    <div className="page-enter">
       {/* Round tabs */}
       <div className="ko-tabs">
         {ROUND_ORDER.map(r => (

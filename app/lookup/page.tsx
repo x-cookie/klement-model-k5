@@ -15,7 +15,7 @@ export default function LookupPage() {
   const tB = teamData(teamB)
 
   return (
-    <div className="sec">
+    <div className="sec page-enter">
       <div className="section-title">MATCH LOOKUP</div>
 
       {/* Team selectors — 1fr auto 1fr with VS in center */}

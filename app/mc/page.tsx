@@ -51,7 +51,7 @@ export default function MCPage() {
   const maxCount = sorted ? sorted[0]?.[1] ?? 1 : 1
 
   return (
-    <div className="sec">
+    <div className="sec page-enter">
       <div className="section-title">MONTE CARLO SIMULATOR</div>
       <div style={{ fontSize: 7, color: 'var(--color-muted)', lineHeight: 2, marginBottom: 16 }}>
         EACH SIMULATION RUNS THE FULL BRACKET<br />
