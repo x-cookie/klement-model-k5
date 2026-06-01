@@ -24,6 +24,7 @@ export default async function KnockoutPage({ params }: { params: Promise<{ round
       <PixelParticles variant={isFinal ? 'green' : 'mix'} />
       <div style={{ position: 'relative', zIndex: 1 }}>
       <div className="ko-tabs">
+        <Link href="/knockout/bracket" className="ko-tab">BRACKET</Link>
         {ROUND_ORDER.map(r => (
           <Link key={r} href={`/knockout/${r}`} className={`ko-tab${round === r ? ' active' : ''}`}>
             {r.toUpperCase()}
