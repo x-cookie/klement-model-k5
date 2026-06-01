@@ -35,7 +35,7 @@ export default function LandingPage() {
               — NOW RUNNING ON ALL 48 QUALIFIED NATIONS.
             </div>
             <div className="fade-in delay-3" style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center' }}>
-              <Link href="/lookup" className="px-btn" style={{
+              <Link href="/versus" className="px-btn" style={{
                 fontFamily: 'inherit', fontSize: 10, padding: '12px 22px',
                 backgroundColor: 'var(--color-r)', color: '#fff', border: 'none',
                 boxShadow: '4px 4px 0 var(--color-r-sh)', textDecoration: 'none', display: 'inline-block',
@@ -120,15 +120,9 @@ export default function LandingPage() {
           <div className="section-title">2026 PREDICTION</div>
           <div className="pred-banner">
             <div className="dot-grid" style={{ position: 'absolute', inset: 0, zIndex: 0 }} />
-            <div style={{ position: 'relative', zIndex: 1 }}>
+            <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div style={{
-                fontSize: 8, color: 'var(--color-g)', letterSpacing: 2, marginBottom: 14,
-                backgroundColor: '#fff', display: 'inline-block', padding: '5px 12px',
-                border: '1px solid var(--color-g-sh)',
-              }}>PROJECTED CHAMPION</div>
-              <div style={{
-                display: 'inline-block',
-                marginBottom: 16,
+                marginBottom: 18,
                 border: '3px solid var(--color-g)',
                 boxShadow: '6px 6px 0 var(--color-g-sh), 0 0 0 1px var(--color-g)',
                 lineHeight: 0,

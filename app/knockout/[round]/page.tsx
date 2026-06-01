@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { matchP, teamData } from '@/lib/klement'
-import { ROUNDS, ROUND_LABELS } from '@/lib/fixtures'
+import { ROUNDS, ROUND_LABELS, makeSlug } from '@/lib/fixtures'
 import PixelParticles from '@/components/ui/PixelParticles'
 import FlagImg from '@/components/ui/FlagImg'
 
@@ -40,6 +40,7 @@ export default async function KnockoutPage({ params }: { params: Promise<{ round
         </div>
 
         {matches.map((m, i) => {
+          const matchHref = `/knockout/${round}/${makeSlug(m.teamA, m.teamB)}`
           const { pA, dr, pB } = matchP(m.teamA, m.teamB)
           const pAp = Math.round(pA * 100)
           const drp = Math.round(dr * 100)
@@ -49,10 +50,14 @@ export default async function KnockoutPage({ params }: { params: Promise<{ round
           const pickIsA = m.k === m.teamA
 
           return (
-            <div
+            <Link
               key={i}
+              href={matchHref}
               className="ko-match"
-              style={isFinal ? { border: '2px solid var(--color-g)', boxShadow: '4px 4px 0 var(--color-g-sh)' } : {}}
+              style={{
+                textDecoration: 'none',
+                ...(isFinal ? { border: '2px solid var(--color-g)', boxShadow: '4px 4px 0 var(--color-g-sh)' } : {}),
+              }}
             >
               <div>
                 <div style={{ marginBottom: 6 }}>
@@ -77,7 +82,7 @@ export default async function KnockoutPage({ params }: { params: Promise<{ round
                 <div style={{ fontSize: 9, color: 'var(--color-muted)', marginTop: 2 }}>{tB?.conf}</div>
                 {!pickIsA && m.k === m.teamB && <span className="k-badge">K✓</span>}
               </div>
-            </div>
+            </Link>
           )
         })}
       </div>

@@ -57,7 +57,7 @@ export default function AboutPage() {
       </div>
 
       <div style={{ marginTop: 32, display: 'flex', gap: 16 }}>
-        <Link href="/lookup" className="px-btn" style={{
+        <Link href="/versus" className="px-btn" style={{
           fontFamily: 'inherit', fontSize: 10, padding: '12px 22px',
           backgroundColor: 'var(--color-r)', color: '#fff', border: 'none',
           boxShadow: '4px 4px 0 var(--color-r-sh)', textDecoration: 'none', display: 'inline-block',

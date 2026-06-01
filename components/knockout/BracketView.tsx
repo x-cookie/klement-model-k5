@@ -1,7 +1,7 @@
 'use client'
 import { Fragment } from 'react'
 import Link from 'next/link'
-import { ROUNDS } from '@/lib/fixtures'
+import { ROUNDS, makeSlug } from '@/lib/fixtures'
 import { teamData } from '@/lib/klement'
 import FlagImg from '@/components/ui/FlagImg'
 
@@ -101,11 +101,11 @@ function ColConnector({ fromRound, count }: { fromRound: number; count: number }
 }
 
 const BRACKET_ROUNDS = [
-  { key: 'r32'   as const, label: 'R32',   connCount: 8, href: '/knockout/r32'   },
-  { key: 'r16'   as const, label: 'R16',   connCount: 4, href: '/knockout/r16'   },
-  { key: 'qf'    as const, label: 'QF',    connCount: 2, href: '/knockout/qf'    },
-  { key: 'sf'    as const, label: 'SF',    connCount: 1, href: '/knockout/sf'    },
-  { key: 'final' as const, label: 'FINAL', connCount: 0, href: '/knockout/final' },
+  { key: 'r32'   as const, label: 'R32',   connCount: 8 },
+  { key: 'r16'   as const, label: 'R16',   connCount: 4 },
+  { key: 'qf'    as const, label: 'QF',    connCount: 2 },
+  { key: 'sf'    as const, label: 'SF',    connCount: 1 },
+  { key: 'final' as const, label: 'FINAL', connCount: 0 },
 ]
 
 // CSS grid: 5 match columns (1fr each) interleaved with 4 fixed connector columns
@@ -119,7 +119,7 @@ export default function BracketView() {
         gridTemplateColumns: GRID_COLS,
         alignItems: 'start',
       }}>
-        {BRACKET_ROUNDS.map(({ key, label, connCount, href }, roundIdx) => {
+        {BRACKET_ROUNDS.map(({ key, label, connCount }, roundIdx) => {
           const matches = ROUNDS[key]
           return (
             <Fragment key={key}>
@@ -145,7 +145,7 @@ export default function BracketView() {
                     k={m.k}
                     top={matchY(roundIdx, i)}
                     isFinal={key === 'final'}
-                    href={href}
+                    href={`/knockout/${key}/${makeSlug(m.teamA, m.teamB)}`}
                   />
                 ))}
               </div>

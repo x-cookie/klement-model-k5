@@ -1,5 +1,9 @@
 import type { KnockoutMatch } from '../types'
 
+export function makeSlug(a: string, b: string): string {
+  return `${a.toLowerCase().replace(/ /g, '-')}-vs-${b.toLowerCase().replace(/ /g, '-')}`
+}
+
 // Official FIFA World Cup 2026 draw (December 5, 2024, Washington D.C.)
 export const GROUPS: Record<string, string[]> = {
   A: ['Mexico',      'South Korea',  'South Africa',       'Czechia'],
