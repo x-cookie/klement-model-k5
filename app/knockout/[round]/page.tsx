@@ -49,7 +49,7 @@ export default async function KnockoutPage({ params }: { params: Promise<{ round
               style={isFinal ? { border: '2px solid var(--color-g)', boxShadow: '4px 4px 0 var(--color-g-sh)' } : {}}
             >
               <div>
-                <span style={{ fontSize: 28, display: 'block', marginBottom: 6 }}>{tA?.flag ?? '🏳'}</span>
+                <span style={{ fontSize: 22, display: 'block', marginBottom: 6 }}>{tA?.flag ?? '🏳'}</span>
                 <div style={{ fontSize: 10, lineHeight: 1.8 }}>{m.teamA}</div>
                 <div style={{ fontSize: 9, color: 'var(--color-muted)', marginTop: 2 }}>{tA?.conf}</div>
                 {pickIsA && <span className="k-badge">K✓</span>}
@@ -62,7 +62,7 @@ export default async function KnockoutPage({ params }: { params: Promise<{ round
               </div>
 
               <div style={{ textAlign: 'right' }}>
-                <span style={{ fontSize: 28, display: 'block', marginBottom: 6 }}>{tB?.flag ?? '🏳'}</span>
+                <span style={{ fontSize: 22, display: 'block', marginBottom: 6 }}>{tB?.flag ?? '🏳'}</span>
                 <div style={{ fontSize: 10, lineHeight: 1.8 }}>{m.teamB}</div>
                 <div style={{ fontSize: 9, color: 'var(--color-muted)', marginTop: 2 }}>{tB?.conf}</div>
                 {!pickIsA && m.k === m.teamB && <span className="k-badge">K✓</span>}

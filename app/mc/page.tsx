@@ -59,7 +59,7 @@ export default function MCPage() {
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 32, flexWrap: 'wrap' }}>
         <div style={{ fontSize: 10, color: 'var(--color-muted)' }}>SIMULATIONS</div>
-        <div style={{ fontSize: 22, color: 'var(--color-b)' }}>{n.toLocaleString()}</div>
+        <div style={{ fontSize: 18, color: 'var(--color-b)' }}>{n.toLocaleString()}</div>
         <input
           type="range" min={100} max={5000} step={100} value={n}
           onChange={e => setN(Number(e.target.value))}
@@ -70,7 +70,7 @@ export default function MCPage() {
           onClick={run}
           disabled={running}
           style={{
-            fontFamily: 'inherit', fontSize: 11, padding: '14px 24px',
+            fontFamily: 'inherit', fontSize: 10, padding: '12px 20px',
             backgroundColor: 'var(--color-g)', color: '#fff', border: 'none',
             boxShadow: '4px 4px 0 var(--color-g-sh)',
           }}

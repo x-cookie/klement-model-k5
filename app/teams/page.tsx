@@ -31,7 +31,7 @@ export default function TeamsPage() {
           { num: `$${team?.gdp}k`, label: 'GDP/CAPITA',  color: 'var(--color-r)', sh: 'var(--color-r-sh)' },
         ].map(({ num, label, color, sh }) => (
           <div key={label} className="score-card">
-            <span style={{ fontSize: 22, color, textShadow: `2px 2px 0 ${sh}`, display: 'block', marginBottom: 8 }}>{num}</span>
+            <span style={{ fontSize: 18, color, textShadow: `2px 2px 0 ${sh}`, display: 'block', marginBottom: 8 }}>{num}</span>
             <span style={{ fontSize: 9, color: 'var(--color-muted)' }}>{label}</span>
           </div>
         ))}

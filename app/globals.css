@@ -83,34 +83,34 @@ main { flex: 1; }
 
 /* ── Section title (► prefix) ── */
 .section-title {
-  font-size: 11px;
+  font-size: 9px;
   color: var(--color-b);
   letter-spacing: 2px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
   text-transform: uppercase;
 }
-.section-title::before { content: '►'; color: var(--color-r); font-size: 11px; }
+.section-title::before { content: '►'; color: var(--color-r); font-size: 9px; }
 
 /* ── Eyebrow tag ── */
 .eyebrow {
   color: var(--color-b);
-  font-size: 9px;
+  font-size: 8px;
   letter-spacing: 2px;
   background: var(--color-b-bg);
   display: inline-block;
-  padding: 6px 12px;
+  padding: 5px 10px;
   border: 1px solid var(--color-b-sh);
   text-transform: uppercase;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 /* ── Pixel select ── */
 .px-select {
   font-family: var(--font-pixel), monospace;
-  font-size: 10px;
+  font-size: 9px;
   background: var(--color-bg);
   color: var(--color-txt);
   border: 2px solid var(--color-brd2);
@@ -125,7 +125,7 @@ main { flex: 1; }
 .px-select:focus { border-color: var(--color-b); }
 
 /* ── Section wrapper ── */
-.sec { padding: 40px 36px; border-bottom: 2px solid var(--color-brd); }
+.sec { padding: 32px 28px; border-bottom: 2px solid var(--color-brd); }
 
 /* ── Stats bar ── */
 .stats-bar {
@@ -134,23 +134,23 @@ main { flex: 1; }
   border-bottom: 2px solid var(--color-brd);
   background: var(--color-surf);
 }
-.stat-cell { padding: 28px 20px; border-right: 1px solid var(--color-brd); text-align: center; }
+.stat-cell { padding: 22px 16px; border-right: 1px solid var(--color-brd); text-align: center; }
 .stat-cell:last-child { border-right: none; }
 
 /* ── Track record cards ── */
-.record-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.record-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .record-card {
   background: var(--color-bg);
-  padding: 28px 20px;
+  padding: 22px 16px;
   text-align: center;
   border: 2px solid var(--color-brd2);
   box-shadow: 4px 4px 0 var(--color-brd);
   position: relative;
 }
 .record-badge {
-  position: absolute; top: 8px; right: 8px;
-  font-size: 8px; color: var(--color-g);
-  background: var(--color-g-bg); padding: 3px 6px;
+  position: absolute; top: 7px; right: 7px;
+  font-size: 7px; color: var(--color-g);
+  background: var(--color-g-bg); padding: 2px 5px;
   border: 1px solid var(--color-g-sh);
 }
 
@@ -178,55 +178,55 @@ main { flex: 1; }
 /* ── WDL bar ── */
 .wdl-bar {
   display: flex;
-  height: 44px;
+  height: 36px;
   overflow: hidden;
   border: 2px solid var(--color-brd2);
   box-shadow: 3px 3px 0 var(--color-brd);
 }
-.wdl-a { background: var(--color-r); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 10px; transition: flex .3s; }
-.wdl-d { background: var(--color-surf); color: var(--color-muted); display: flex; align-items: center; justify-content: center; font-size: 10px; border-left: 1px solid var(--color-brd); border-right: 1px solid var(--color-brd); transition: flex .3s; }
-.wdl-b { background: var(--color-b); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 10px; transition: flex .3s; }
-.wdl-labels { display: grid; grid-template-columns: 1fr auto 1fr; margin-top: 10px; }
+.wdl-a { background: var(--color-r); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 9px; transition: flex .3s; }
+.wdl-d { background: var(--color-surf); color: var(--color-muted); display: flex; align-items: center; justify-content: center; font-size: 9px; border-left: 1px solid var(--color-brd); border-right: 1px solid var(--color-brd); transition: flex .3s; }
+.wdl-b { background: var(--color-b); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 9px; transition: flex .3s; }
+.wdl-labels { display: grid; grid-template-columns: 1fr auto 1fr; margin-top: 8px; }
 
 /* ── H2H ── */
 .h2h-row {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   background: var(--color-surf);
   border: 1px solid var(--color-brd);
-  padding: 14px 18px;
-  margin-bottom: 10px;
+  padding: 11px 14px;
+  margin-bottom: 8px;
 }
-.h2h-bar { display: flex; height: 26px; overflow: hidden; border: 1px solid var(--color-brd2); }
-.h2h-a { background: var(--color-r); display: flex; align-items: center; justify-content: center; font-size: 9px; color: #fff; }
-.h2h-d { background: var(--color-surf); display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--color-muted); border-left: 1px solid var(--color-brd); border-right: 1px solid var(--color-brd); }
-.h2h-b { background: var(--color-b); display: flex; align-items: center; justify-content: center; font-size: 9px; color: #fff; }
+.h2h-bar { display: flex; height: 22px; overflow: hidden; border: 1px solid var(--color-brd2); }
+.h2h-a { background: var(--color-r); display: flex; align-items: center; justify-content: center; font-size: 8px; color: #fff; }
+.h2h-d { background: var(--color-surf); display: flex; align-items: center; justify-content: center; font-size: 8px; color: var(--color-muted); border-left: 1px solid var(--color-brd); border-right: 1px solid var(--color-brd); }
+.h2h-b { background: var(--color-b); display: flex; align-items: center; justify-content: center; font-size: 8px; color: #fff; }
 
 /* ── Monte Carlo row ── */
 .mc-row {
   display: grid;
-  grid-template-columns: 28px 200px 1fr 52px;
+  grid-template-columns: 24px 180px 1fr 44px;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
+  gap: 10px;
+  margin-bottom: 8px;
 }
 
 /* ── Group card ── */
 .group-card { background: var(--color-bg); border: 2px solid var(--color-brd2); box-shadow: 3px 3px 0 var(--color-brd); }
-.group-header { background: var(--color-b-bg); border-bottom: 2px solid var(--color-b-sh); padding: 12px 16px; font-size: 11px; color: var(--color-b); letter-spacing: 1px; }
+.group-header { background: var(--color-b-bg); border-bottom: 2px solid var(--color-b-sh); padding: 10px 14px; font-size: 10px; color: var(--color-b); letter-spacing: 1px; }
 .group-table { width: 100%; border-collapse: collapse; }
-.group-table th { font-size: 9px; color: var(--color-muted); padding: 8px 12px; border-bottom: 1px solid var(--color-brd); text-align: left; font-weight: normal; }
+.group-table th { font-size: 8px; color: var(--color-muted); padding: 7px 10px; border-bottom: 1px solid var(--color-brd); text-align: left; font-weight: normal; }
 .group-table th:not(:first-child) { text-align: center; }
-.group-table td { font-size: 10px; padding: 8px 12px; border-bottom: 1px solid var(--color-brd); }
+.group-table td { font-size: 9px; padding: 7px 10px; border-bottom: 1px solid var(--color-brd); }
 .group-table td:not(:first-child) { text-align: center; }
 .group-table tr:last-child td { border-bottom: none; }
-.qual-dot { display: inline-block; width: 8px; height: 8px; background: var(--color-g); margin-right: 6px; vertical-align: middle; }
+.qual-dot { display: inline-block; width: 7px; height: 7px; background: var(--color-g); margin-right: 5px; vertical-align: middle; }
 
 /* ── Knockout tabs ── */
 .ko-tabs { display: flex; border-bottom: 2px solid var(--color-brd2); }
-.ko-tab { padding: 16px 22px; font-size: 10px; color: var(--color-muted); cursor: pointer; border-right: 1px solid var(--color-brd); white-space: nowrap; transition: background .1s; user-select: none; }
+.ko-tab { padding: 13px 18px; font-size: 9px; color: var(--color-muted); cursor: pointer; border-right: 1px solid var(--color-brd); white-space: nowrap; transition: background .1s; user-select: none; }
 .ko-tab:hover { background: var(--color-surf); color: var(--color-txt); }
 .ko-tab.active { background: var(--color-r-bg); color: var(--color-r); }
 
@@ -235,21 +235,21 @@ main { flex: 1; }
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   background: var(--color-bg);
   border: 2px solid var(--color-brd2);
   box-shadow: 3px 3px 0 var(--color-brd);
-  padding: 20px 24px;
-  margin-bottom: 12px;
+  padding: 16px 20px;
+  margin-bottom: 10px;
 }
-.ko-mini-bar { display: flex; height: 32px; overflow: hidden; border: 1px solid var(--color-brd2); }
+.ko-mini-bar { display: flex; height: 26px; overflow: hidden; border: 1px solid var(--color-brd2); }
 
 /* ── Prediction banner ── */
 .pred-banner {
   background: var(--color-g-bg);
   border: 2px solid var(--color-g);
   box-shadow: 4px 4px 0 var(--color-g-sh);
-  padding: 48px 36px;
+  padding: 36px 28px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -260,7 +260,7 @@ main { flex: 1; }
   background: var(--color-bg);
   border: 2px solid var(--color-brd2);
   box-shadow: 3px 3px 0 var(--color-brd);
-  padding: 24px 16px;
+  padding: 18px 14px;
   text-align: center;
 }
 
@@ -268,20 +268,20 @@ main { flex: 1; }
 .factor-card {
   background: var(--color-surf);
   border: 1px solid var(--color-brd);
-  padding: 20px;
+  padding: 16px;
 }
 
 /* ── About boxes ── */
 .about-formula {
   background: var(--color-b-bg);
   border: 2px solid var(--color-b-sh);
-  padding: 28px;
-  margin-bottom: 24px;
+  padding: 22px;
+  margin-bottom: 20px;
 }
 .about-quote {
   background: var(--color-r-bg);
   border: 2px solid var(--color-r-sh);
-  padding: 28px;
+  padding: 22px;
 }
 
 /* ── Nav ── */
@@ -296,8 +296,8 @@ main { flex: 1; }
 }
 .nav-logo {
   color: var(--color-r);
-  padding: 18px 24px;
-  font-size: 13px;
+  padding: 14px 20px;
+  font-size: 11px;
   border-right: 2px solid var(--color-brd2);
   flex-shrink: 0;
   background: var(--color-r-bg);
@@ -311,8 +311,8 @@ main { flex: 1; }
 .nav-links { display: flex; flex: 1; overflow: hidden; }
 .nav-link {
   color: var(--color-muted);
-  padding: 0 20px;
-  font-size: 10px;
+  padding: 0 16px;
+  font-size: 9px;
   border-right: 1px solid var(--color-brd);
   cursor: pointer;
   white-space: nowrap;
@@ -328,7 +328,7 @@ main { flex: 1; }
 
 /* ── Footer ── */
 .footer {
-  padding: 18px 36px;
+  padding: 14px 28px;
   border-top: 2px solid var(--color-brd);
   background: var(--color-surf);
   display: flex;
@@ -338,10 +338,10 @@ main { flex: 1; }
 
 /* ── k badge ── */
 .k-badge {
-  font-size: 8px;
+  font-size: 7px;
   color: var(--color-g);
   background: var(--color-g-bg);
-  padding: 3px 6px;
+  padding: 2px 5px;
   border: 1px solid var(--color-g-sh);
   letter-spacing: 0.3px;
   display: inline-block;

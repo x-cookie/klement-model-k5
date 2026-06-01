@@ -55,12 +55,12 @@ export default function AboutPage() {
 
       <div style={{ marginTop: 32, display: 'flex', gap: 16 }}>
         <Link href="/lookup" className="px-btn" style={{
-          fontFamily: 'inherit', fontSize: 11, padding: '14px 28px',
+          fontFamily: 'inherit', fontSize: 10, padding: '12px 22px',
           backgroundColor: 'var(--color-r)', color: '#fff', border: 'none',
           boxShadow: '4px 4px 0 var(--color-r-sh)', textDecoration: 'none', display: 'inline-block',
         }}>▶ TRY THE PREDICTOR</Link>
         <Link href="/mc" className="px-btn" style={{
-          fontFamily: 'inherit', fontSize: 11, padding: '14px 28px',
+          fontFamily: 'inherit', fontSize: 10, padding: '12px 22px',
           backgroundColor: 'var(--color-surf)', color: 'var(--color-txt)',
           border: '2px solid var(--color-brd2)', boxShadow: '4px 4px 0 var(--color-brd)',
           textDecoration: 'none', display: 'inline-block',
