@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import PixelBar from '@/components/ui/PixelBar'
 import PixelParticles from '@/components/ui/PixelParticles'
+import FlagImg from '@/components/ui/FlagImg'
 
 const factors = [
   { label: 'FIFA RANKING', pct: 45, color: 'var(--color-r)' },
@@ -77,8 +78,8 @@ export default function LandingPage() {
       {/* ── STATS BAR ── */}
       <div className="stats-bar">
         {[
-          { num: '3',    label: 'CORRECT CALLS',  color: 'var(--color-r)', sh: 'var(--color-r-sh)' },
-          { num: '48',   label: 'QUALIFIED TEAMS', color: 'var(--color-g)', sh: 'var(--color-g-sh)' },
+          { num: '48',   label: 'QUALIFIED TEAMS', color: 'var(--color-r)', sh: 'var(--color-r-sh)' },
+          { num: '3',    label: 'CORRECT CALLS',  color: 'var(--color-g)', sh: 'var(--color-g-sh)' },
           { num: '0.55', label: 'MODEL R²',         color: 'var(--color-b)', sh: 'var(--color-b-sh)' },
         ].map(({ num, label, color, sh }) => (
           <div key={label} className="stat-cell">
@@ -95,14 +96,16 @@ export default function LandingPage() {
           <div className="section-title">TRACK RECORD</div>
           <div className="record-grid">
             {[
-              { year: '2014', flag: '🇩🇪', name: 'GERMANY' },
-              { year: '2018', flag: '🇫🇷', name: 'FRANCE' },
-              { year: '2022', flag: '🇦🇷', name: 'ARGENTINA' },
-            ].map(({ year, flag, name }) => (
+              { year: '2014', team: 'Germany',   name: 'GERMANY',   emoji: '🇩🇪' },
+              { year: '2018', team: 'France',    name: 'FRANCE',    emoji: '🇫🇷' },
+              { year: '2022', team: 'Argentina', name: 'ARGENTINA', emoji: '🇦🇷' },
+            ].map(({ year, team, name, emoji }) => (
               <div key={year} className="record-card">
                 <div className="record-badge">✓ WIN</div>
                 <div style={{ fontSize: 8, color: 'var(--color-muted)', marginBottom: 10 }}>{year}</div>
-                <span style={{ fontSize: 28, display: 'block', marginBottom: 8 }}>{flag}</span>
+                <div style={{ marginBottom: 8 }}>
+                  <FlagImg name={team} h={36} emoji={emoji} />
+                </div>
                 <div style={{ fontSize: 9, color: 'var(--color-g)' }}>{name}</div>
               </div>
             ))}
@@ -123,7 +126,9 @@ export default function LandingPage() {
                 backgroundColor: '#fff', display: 'inline-block', padding: '5px 12px',
                 border: '1px solid var(--color-g-sh)',
               }}>PROJECTED CHAMPION</div>
-              <div className="football-bounce" style={{ fontSize: 40, display: 'block', marginBottom: 12 }}>🇳🇱</div>
+              <div className="football-bounce" style={{ marginBottom: 12, display: 'inline-block' }}>
+                <FlagImg name="Netherlands" h={48} emoji="🇳🇱" />
+              </div>
               <div className="txt-shadow-g" style={{ fontSize: 18, color: 'var(--color-g)', marginBottom: 12 }}>
                 NETHERLANDS<span className="blink">_</span>
               </div>

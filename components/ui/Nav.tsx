@@ -19,7 +19,9 @@ export default function Nav() {
 
   return (
     <nav className="nav">
-      <Link href="/" className="nav-logo">WC26<span>▶</span>K1</Link>
+      <Link href="/" className="nav-logo">
+        <span style={{ color: 'var(--color-b)', marginRight: 6 }}>⌂</span>Klement
+      </Link>
       <div className="nav-links">
         {links.map(({ href, label }) => (
           <Link key={href} href={href} className={`nav-link${isActive(href) ? ' active' : ''}`}>
