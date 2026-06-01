@@ -18,7 +18,7 @@ export default function MatchCard({ teamA, teamB, k, isFinal = false }: Props) {
     : { border: '1px solid var(--color-brd)', boxShadow: '3px 3px 0 var(--color-brd)' }
 
   return (
-    <div style={{ ...cardStyle, padding: 16, background: 'var(--color-bg)' }}>
+    <div style={{ ...cardStyle, padding: 16, backgroundColor: 'var(--color-bg)' }}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr 1fr', gap: 8, alignItems: 'center', marginBottom: 10 }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 4 }}>
           <span style={{ fontSize: 24 }}>{tA?.flag ?? '🏳'}</span>

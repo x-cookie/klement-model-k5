@@ -29,12 +29,12 @@ export default function LandingPage() {
           <div className="fade-in delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
             <Link href="/lookup" className="px-btn" style={{
               fontFamily: 'inherit', fontSize: 8, padding: '10px 16px',
-              background: 'var(--color-r)', color: '#fff', border: 'none',
+              backgroundColor: 'var(--color-r)', color: '#fff', border: 'none',
               boxShadow: '4px 4px 0 var(--color-r-sh)', textDecoration: 'none', display: 'inline-block',
             }}>▶ PREDICT MATCH</Link>
             <Link href="/about" className="px-btn" style={{
               fontFamily: 'inherit', fontSize: 8, padding: '10px 16px',
-              background: 'var(--color-bg)', color: 'var(--color-b)',
+              backgroundColor: 'var(--color-bg)', color: 'var(--color-b)',
               border: `2px solid var(--color-b)`, boxShadow: '4px 4px 0 var(--color-b-sh)',
               textDecoration: 'none', display: 'inline-block',
             }}>? HOW IT WORKS</Link>
@@ -83,7 +83,7 @@ export default function LandingPage() {
           <div style={{ position: 'relative', zIndex: 1 }}>
             <div style={{
               fontSize: 6, color: 'var(--color-g)', letterSpacing: 2, marginBottom: 10,
-              background: '#fff', display: 'inline-block', padding: '3px 8px',
+              backgroundColor: '#fff', display: 'inline-block', padding: '3px 8px',
               border: '1px solid var(--color-g-sh)',
             }}>PROJECTED CHAMPION</div>
             <span style={{ fontSize: 36, display: 'block', marginBottom: 8 }}>🇳🇱</span>

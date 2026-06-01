@@ -72,7 +72,7 @@ export default function MCPage() {
           disabled={running}
           style={{
             fontFamily: 'inherit', fontSize: 8, padding: '10px 16px',
-            background: 'var(--color-g)', color: '#fff', border: 'none',
+            backgroundColor: 'var(--color-g)', color: '#fff', border: 'none',
             boxShadow: '4px 4px 0 var(--color-g-sh)',
           }}
         >

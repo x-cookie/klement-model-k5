@@ -63,7 +63,7 @@ export default function FactorBreakdown({ name }: Props) {
         )
       })}
       {t.host && (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: 8, background: 'var(--color-g-bg)', border: '1px solid var(--color-g-sh)', fontSize: 7 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: 8, backgroundColor: 'var(--color-g-bg)', border: '1px solid var(--color-g-sh)', fontSize: 7 }}>
           <span style={{ color: 'var(--color-g)', fontWeight: 'bold' }}>+5%</span>
           <span style={{ color: 'var(--color-txt)' }}>Home advantage bonus</span>
         </div>

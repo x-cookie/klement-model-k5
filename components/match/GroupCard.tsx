@@ -65,7 +65,7 @@ export default function GroupCard({ group, teams }: Props) {
         onClick={() => setOpen(o => !o)}
         style={{
           width: '100%', padding: '6px 10px', textAlign: 'left',
-          fontSize: 6, color: 'var(--color-muted)', background: 'none',
+          fontSize: 6, color: 'var(--color-muted)', backgroundColor: 'none',
           border: 'none', borderTop: '1px solid var(--color-brd)',
           cursor: 'pointer', fontFamily: 'inherit',
         }}

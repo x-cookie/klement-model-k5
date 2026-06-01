@@ -8,7 +8,7 @@ export default function PixelBar({ value, color = 'var(--color-g-mid)' }: Props)
     <div className="pixel-bar-track">
       <div
         className="pixel-bar-fill"
-        style={{ width: `${Math.min(100, Math.max(0, value))}%`, background: color }}
+        style={{ width: `${Math.min(100, Math.max(0, value))}%`, backgroundColor: color }}
       />
     </div>
   )

@@ -12,7 +12,7 @@ export default function TeamHeroCard({ name }: Props) {
   if (!t) return null
 
   return (
-    <div style={{ border: '1px solid var(--color-b)', borderLeft: '4px solid var(--color-b)', boxShadow: '4px 4px 0 var(--color-b-sh)', padding: 20, background: 'var(--color-bg)' }}>
+    <div style={{ border: '1px solid var(--color-b)', borderLeft: '4px solid var(--color-b)', boxShadow: '4px 4px 0 var(--color-b-sh)', padding: 20, backgroundColor: 'var(--color-bg)' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
         <span style={{ fontSize: 48 }}>{t.flag}</span>
         <div>
@@ -31,7 +31,7 @@ export default function TeamHeroCard({ name }: Props) {
           { label: 'FIFA Pts', value: String(t.fifa), color: 'var(--color-txt)' },
           { label: 'GDP/cap', value: `$${t.gdp}k`, color: 'var(--color-txt)' },
         ].map(({ label, value, color }) => (
-          <div key={label} style={{ background: 'var(--color-surf)', border: '1px solid var(--color-brd)', padding: 12, textAlign: 'center' }}>
+          <div key={label} style={{ backgroundColor: 'var(--color-surf)', border: '1px solid var(--color-brd)', padding: 12, textAlign: 'center' }}>
             <p style={{ fontSize: 14, color, marginBottom: 4 }}>{value}</p>
             <p style={{ fontSize: 6, color: 'var(--color-muted)' }}>{label}</p>
           </div>

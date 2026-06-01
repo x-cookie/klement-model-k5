@@ -5,13 +5,13 @@ type Variant = 'red' | 'blue' | 'green' | 'outline-blue' | 'primary' | 'default'
 type Size = 'sm' | 'md' | 'lg'
 
 const variantStyles: Record<string, CSSProperties> = {
-  red:          { background: 'var(--color-r)',    color: '#fff', boxShadow: '4px 4px 0 var(--color-r-sh)' },
-  blue:         { background: 'var(--color-b)',    color: '#fff', boxShadow: '4px 4px 0 var(--color-b-sh)' },
-  green:        { background: 'var(--color-g)',    color: '#fff', boxShadow: '4px 4px 0 var(--color-g-sh)' },
-  'outline-blue': { background: 'transparent', color: 'var(--color-b)', border: '2px solid var(--color-b)', boxShadow: '4px 4px 0 var(--color-b-sh)' },
-  primary:      { background: 'var(--color-r)',    color: '#fff', boxShadow: '4px 4px 0 var(--color-r-sh)' },
-  default:      { background: 'var(--color-surf)', color: 'var(--color-txt)', border: '2px solid var(--color-brd2)', boxShadow: '4px 4px 0 var(--color-brd)' },
-  ghost:        { background: 'transparent', color: 'var(--color-muted)', border: '1px solid var(--color-brd)' },
+  red:          { backgroundColor: 'var(--color-r)',    color: '#fff', boxShadow: '4px 4px 0 var(--color-r-sh)' },
+  blue:         { backgroundColor: 'var(--color-b)',    color: '#fff', boxShadow: '4px 4px 0 var(--color-b-sh)' },
+  green:        { backgroundColor: 'var(--color-g)',    color: '#fff', boxShadow: '4px 4px 0 var(--color-g-sh)' },
+  'outline-blue': { backgroundColor: 'transparent', color: 'var(--color-b)', border: '2px solid var(--color-b)', boxShadow: '4px 4px 0 var(--color-b-sh)' },
+  primary:      { backgroundColor: 'var(--color-r)',    color: '#fff', boxShadow: '4px 4px 0 var(--color-r-sh)' },
+  default:      { backgroundColor: 'var(--color-surf)', color: 'var(--color-txt)', border: '2px solid var(--color-brd2)', boxShadow: '4px 4px 0 var(--color-brd)' },
+  ghost:        { backgroundColor: 'transparent', color: 'var(--color-muted)', border: '1px solid var(--color-brd)' },
 }
 
 const baseStyle: CSSProperties = {

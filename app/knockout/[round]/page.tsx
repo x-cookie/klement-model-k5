@@ -63,9 +63,9 @@ export default async function KnockoutPage({ params }: { params: Promise<{ round
 
               {/* WDL mini bar */}
               <div className="ko-mini-bar">
-                <div style={{ flex: pAp, background: 'var(--color-r)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 6 }}>{pAp}%</div>
-                <div style={{ flex: drp, background: 'var(--color-surf)', color: 'var(--color-muted)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 6, borderLeft: '1px solid var(--color-brd)', borderRight: '1px solid var(--color-brd)' }}>{drp}%</div>
-                <div style={{ flex: pBp, background: 'var(--color-b)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 6 }}>{pBp}%</div>
+                <div style={{ flex: pAp, backgroundColor: 'var(--color-r)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 6 }}>{pAp}%</div>
+                <div style={{ flex: drp, backgroundColor: 'var(--color-surf)', color: 'var(--color-muted)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 6, borderLeft: '1px solid var(--color-brd)', borderRight: '1px solid var(--color-brd)' }}>{drp}%</div>
+                <div style={{ flex: pBp, backgroundColor: 'var(--color-b)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 6 }}>{pBp}%</div>
               </div>
 
               {/* Team B */}

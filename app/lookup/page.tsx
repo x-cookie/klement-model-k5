@@ -48,7 +48,7 @@ export default function LookupPage() {
             ].map(({ label, val }) => (
               <div key={label} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
                 <span style={{ fontSize: 6, color: 'var(--color-muted)' }}>{label}</span>
-                <span style={{ fontSize: 6, color: 'var(--color-g)', background: 'var(--color-g-bg)', padding: '2px 4px', border: '1px solid var(--color-g-sh)' }}>{val}</span>
+                <span style={{ fontSize: 6, color: 'var(--color-g)', backgroundColor: 'var(--color-g-bg)', padding: '2px 4px', border: '1px solid var(--color-g-sh)' }}>{val}</span>
               </div>
             ))}
             <div style={{ marginTop: 10 }}>
