@@ -1,18 +1,16 @@
 'use client'
 import { Fragment } from 'react'
+import Link from 'next/link'
 import { ROUNDS } from '@/lib/fixtures'
 import { teamData } from '@/lib/klement'
 import FlagImg from '@/components/ui/FlagImg'
 
-// Layout constants
-const MATCH_H = 50   // height of each compact match slot (px)
-const STEP = 54      // R32 match spacing (MATCH_H + 4px gap)
-const COL_W = 118    // width of each round column (px)
-const CONN_W = 20    // width of SVG connector between columns (px)
-const TOTAL_H = 15 * STEP + MATCH_H  // 860px total bracket height
-const ROW_H = Math.floor((MATCH_H - 1) / 2)  // each team row height
+const MATCH_H = 50
+const STEP    = 54      // MATCH_H + 4px gap between R32 matches
+const CONN_W  = 22      // fixed pixel width of SVG connectors
+const TOTAL_H = 15 * STEP + MATCH_H   // 860px
+const ROW_H   = Math.floor((MATCH_H - 1) / 2)
 
-// Recursively compute top-offset of match (round, idx) in the bracket
 function matchY(round: number, idx: number): number {
   if (round === 0) return idx * STEP
   const tY = matchY(round - 1, idx * 2)
@@ -26,16 +24,16 @@ function TeamRow({ name, isPick }: { name: string; isPick: boolean }) {
     <div style={{
       display: 'flex',
       alignItems: 'center',
-      gap: 3,
-      padding: '0 4px',
+      gap: 4,
+      padding: '0 6px',
       height: ROW_H,
       backgroundColor: isPick ? 'var(--color-g-bg)' : 'transparent',
       borderLeft: isPick ? '2px solid var(--color-g)' : '2px solid transparent',
       boxSizing: 'border-box',
     }}>
-      <FlagImg name={name} h={10} emoji={t?.flag ?? '🏳️'} />
+      <FlagImg name={name} h={11} emoji={t?.flag ?? '🏳️'} />
       <span style={{
-        fontSize: 6,
+        fontSize: 7,
         color: isPick ? 'var(--color-g)' : 'var(--color-txt)',
         fontWeight: isPick ? 'bold' : 'normal',
         overflow: 'hidden',
@@ -45,37 +43,41 @@ function TeamRow({ name, isPick }: { name: string; isPick: boolean }) {
         minWidth: 0,
         lineHeight: 1,
       }}>{name}</span>
-      {isPick && <span style={{ fontSize: 5, color: 'var(--color-g)', flexShrink: 0 }}>K✓</span>}
+      {isPick && <span style={{ fontSize: 6, color: 'var(--color-g)', flexShrink: 0 }}>K✓</span>}
     </div>
   )
 }
 
-function MatchSlot({ teamA, teamB, k, top, isFinal }: {
-  teamA: string; teamB: string; k?: string; top: number; isFinal?: boolean
+function MatchSlot({ teamA, teamB, k, top, isFinal, href }: {
+  teamA: string; teamB: string; k?: string; top: number; isFinal?: boolean; href: string
 }) {
   return (
-    <div style={{
-      position: 'absolute',
-      top,
-      left: 0,
-      width: COL_W,
-      height: MATCH_H,
-      border: isFinal ? '1px solid var(--color-g)' : '1px solid var(--color-brd)',
-      backgroundColor: 'var(--color-bg)',
-      overflow: 'hidden',
-      boxSizing: 'border-box',
-    }}>
+    <Link
+      href={href}
+      style={{
+        position: 'absolute',
+        top,
+        left: 0,
+        right: 0,
+        height: MATCH_H,
+        border: isFinal ? '1px solid var(--color-g)' : '1px solid var(--color-brd)',
+        backgroundColor: 'var(--color-bg)',
+        overflow: 'hidden',
+        boxSizing: 'border-box',
+        textDecoration: 'none',
+        display: 'block',
+        cursor: 'pointer',
+      }}
+    >
       <TeamRow name={teamA} isPick={k === teamA} />
       <div style={{ height: 1, backgroundColor: isFinal ? 'var(--color-g-sh)' : 'var(--color-brd)' }} />
       <TeamRow name={teamB} isPick={k === teamB} />
-    </div>
+    </Link>
   )
 }
 
-// SVG connector: draws bracket lines between a round column and the next
 function ColConnector({ fromRound, count }: { fromRound: number; count: number }) {
   const mid = CONN_W / 2
-
   return (
     <svg
       width={CONN_W}
@@ -83,15 +85,15 @@ function ColConnector({ fromRound, count }: { fromRound: number; count: number }
       style={{ display: 'block', flexShrink: 0 }}
     >
       {Array.from({ length: count }, (_, i) => {
-        const tY = matchY(fromRound, i * 2) + MATCH_H / 2
+        const tY = matchY(fromRound, i * 2)     + MATCH_H / 2
         const bY = matchY(fromRound, i * 2 + 1) + MATCH_H / 2
-        const pY = matchY(fromRound + 1, i) + MATCH_H / 2
+        const pY = matchY(fromRound + 1, i)     + MATCH_H / 2
         return (
           <g key={i}>
-            <line x1={0} y1={tY} x2={mid} y2={tY} stroke="var(--color-brd2)" strokeWidth={1} />
-            <line x1={mid} y1={tY} x2={mid} y2={bY} stroke="var(--color-brd2)" strokeWidth={1} />
-            <line x1={0} y1={bY} x2={mid} y2={bY} stroke="var(--color-brd2)" strokeWidth={1} />
-            <line x1={mid} y1={pY} x2={CONN_W} y2={pY} stroke="var(--color-brd2)" strokeWidth={1} />
+            <line x1={0}      y1={tY} x2={mid}    y2={tY} stroke="var(--color-brd2)" strokeWidth={1} />
+            <line x1={mid}    y1={tY} x2={mid}    y2={bY} stroke="var(--color-brd2)" strokeWidth={1} />
+            <line x1={0}      y1={bY} x2={mid}    y2={bY} stroke="var(--color-brd2)" strokeWidth={1} />
+            <line x1={mid}    y1={pY} x2={CONN_W} y2={pY} stroke="var(--color-brd2)" strokeWidth={1} />
           </g>
         )
       })}
@@ -100,28 +102,30 @@ function ColConnector({ fromRound, count }: { fromRound: number; count: number }
 }
 
 const BRACKET_ROUNDS = [
-  { key: 'r32' as const,   label: 'R32',   connCount: 8 },
-  { key: 'r16' as const,   label: 'R16',   connCount: 4 },
-  { key: 'qf'  as const,   label: 'QF',    connCount: 2 },
-  { key: 'sf'  as const,   label: 'SF',    connCount: 1 },
-  { key: 'final' as const, label: 'FINAL', connCount: 0 },
+  { key: 'r32'   as const, label: 'R32',   connCount: 8, href: '/knockout/r32'   },
+  { key: 'r16'   as const, label: 'R16',   connCount: 4, href: '/knockout/r16'   },
+  { key: 'qf'    as const, label: 'QF',    connCount: 2, href: '/knockout/qf'    },
+  { key: 'sf'    as const, label: 'SF',    connCount: 1, href: '/knockout/sf'    },
+  { key: 'final' as const, label: 'FINAL', connCount: 0, href: '/knockout/final' },
 ]
+
+// CSS grid: 5 match columns (1fr each) interleaved with 4 fixed connector columns
+const GRID_COLS = `1fr ${CONN_W}px 1fr ${CONN_W}px 1fr ${CONN_W}px 1fr ${CONN_W}px 1fr`
 
 export default function BracketView() {
   return (
-    <div style={{ overflowX: 'auto', paddingBottom: 12 }}>
+    <div style={{ paddingTop: 24, paddingBottom: 12 }}>
       <div style={{
-        display: 'flex',
-        alignItems: 'flex-start',
-        width: 'max-content',
-        paddingTop: 24,
+        display: 'grid',
+        gridTemplateColumns: GRID_COLS,
+        alignItems: 'start',
       }}>
-        {BRACKET_ROUNDS.map(({ key, label, connCount }, roundIdx) => {
+        {BRACKET_ROUNDS.map(({ key, label, connCount, href }, roundIdx) => {
           const matches = ROUNDS[key]
           return (
             <Fragment key={key}>
-              {/* Round column */}
-              <div style={{ position: 'relative', width: COL_W, height: TOTAL_H, flexShrink: 0 }}>
+              {/* Round column — 1fr, stretches to fill available space */}
+              <div style={{ position: 'relative', height: TOTAL_H }}>
                 <div style={{
                   position: 'absolute',
                   top: -18,
@@ -142,6 +146,7 @@ export default function BracketView() {
                     k={m.k}
                     top={matchY(roundIdx, i)}
                     isFinal={key === 'final'}
+                    href={href}
                   />
                 ))}
               </div>

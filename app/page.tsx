@@ -126,8 +126,8 @@ export default function LandingPage() {
                 backgroundColor: '#fff', display: 'inline-block', padding: '5px 12px',
                 border: '1px solid var(--color-g-sh)',
               }}>PROJECTED CHAMPION</div>
-              <div className="football-bounce" style={{ marginBottom: 12, display: 'inline-block' }}>
-                <FlagImg name="Netherlands" h={48} emoji="🇳🇱" />
+              <div className="football-bounce" style={{ marginBottom: 14, display: 'inline-block' }}>
+                <FlagImg name="Netherlands" h={80} emoji="🇳🇱" />
               </div>
               <div className="txt-shadow-g" style={{ fontSize: 18, color: 'var(--color-g)', marginBottom: 12 }}>
                 NETHERLANDS<span className="blink">_</span>

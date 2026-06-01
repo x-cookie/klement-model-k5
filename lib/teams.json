@@ -59,7 +59,6 @@
   "Uzbekistan":   { "gdp": 3,  "pop": 35.6,  "temp": 13.0, "fifa": 1500, "latam": false, "host": false, "flag": "🇺🇿", "conf": "AFC" },
   "Jordan":       { "gdp": 5,  "pop": 10.8,  "temp": 17.5, "fifa": 1490, "latam": false, "host": false, "flag": "🇯🇴", "conf": "AFC" },
   "Qatar":        { "gdp": 52, "pop": 3.0,   "temp": 28.0, "fifa": 1490, "latam": false, "host": false, "flag": "🇶🇦", "conf": "AFC" },
-  "Indonesia":    { "gdp": 5,  "pop": 277.5, "temp": 27.0, "fifa": 1460, "latam": false, "host": false, "flag": "🇮🇩", "conf": "AFC" },
   "Iraq":         { "gdp": 7,  "pop": 43.5,  "temp": 22.5, "fifa": 1455, "latam": false, "host": false, "flag": "🇮🇶", "conf": "AFC" },
 
   "New Zealand":  { "gdp": 47, "pop": 5.1,   "temp": 12.0, "fifa": 1410, "latam": false, "host": false, "flag": "🇳🇿", "conf": "OFC" }

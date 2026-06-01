@@ -63,16 +63,37 @@ export default function TeamsPage() {
       )}
 
       {tab === 'profile' && <>
-      <div className="section-title">TEAM PROFILE</div>
 
       <select
         className="px-select"
         value={selected}
         onChange={e => setSelected(e.target.value)}
-        style={{ maxWidth: 360, marginBottom: 28 }}
+        style={{ maxWidth: 360, marginBottom: 20 }}
       >
         {allTeams.map(t => <option key={t} value={t}>{teamData(t)?.flag} {t}</option>)}
       </select>
+
+      {/* Country banner */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 20,
+        padding: '20px 24px',
+        marginBottom: 24,
+        backgroundColor: 'var(--color-surf)',
+        border: '2px solid var(--color-brd2)',
+        boxShadow: '4px 4px 0 var(--color-brd)',
+      }}>
+        <FlagImg name={selected} h={64} emoji={team?.flag ?? '🏳️'} />
+        <div>
+          <div style={{ fontSize: 16, color: 'var(--color-txt)', marginBottom: 6, lineHeight: 1.3 }}>
+            {selected.toUpperCase()}
+          </div>
+          <div style={{ fontSize: 8, color: 'var(--color-muted)', letterSpacing: 1 }}>
+            {team?.conf} · FIFA {team?.fifa} PTS · MODEL {score.toFixed(3)}
+          </div>
+        </div>
+      </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginBottom: 32 }}>
         {[
