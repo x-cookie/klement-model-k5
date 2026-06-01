@@ -2,11 +2,15 @@
 import { useState, useCallback } from 'react'
 import { simKO, teamData } from '@/lib/klement'
 import { ROUNDS } from '@/lib/fixtures'
-import SectionLabel from '@/components/ui/SectionLabel'
-import Btn from '@/components/ui/Btn'
 import PixelBar from '@/components/ui/PixelBar'
 
 type ChampCounts = Record<string, number>
+
+const BAR_COLORS = [
+  'var(--color-r)', 'var(--color-g)', 'var(--color-b)',
+  'var(--color-r)', 'var(--color-g)', 'var(--color-b)',
+  'var(--color-r)', 'var(--color-g)',
+]
 
 function simulateTournament(): string {
   const r32 = ROUNDS.r32.map(m => simKO(m.teamA, m.teamB).winner)
@@ -42,63 +46,62 @@ export default function MCPage() {
   }, [n])
 
   const sorted = results
-    ? Object.entries(results).sort((a, b) => b[1] - a[1]).slice(0, 15)
+    ? Object.entries(results).sort((a, b) => b[1] - a[1]).slice(0, 8)
     : null
   const maxCount = sorted ? sorted[0]?.[1] ?? 1 : 1
 
   return (
-    <div style={{ maxWidth: 720, margin: '0 auto', padding: '32px 24px' }}>
-      <div className="fade-in" style={{ marginBottom: 24 }}>
-        <SectionLabel>Monte Carlo Simulator</SectionLabel>
-        <h1 style={{ fontSize: 14, color: 'var(--color-r)', marginTop: 4 }}>RUN THE TOURNAMENT</h1>
-        <p style={{ fontSize: 7, color: 'var(--color-muted)', lineHeight: 2, marginTop: 8 }}>
-          EACH SIMULATION RUNS THE FULL 32-TEAM BRACKET WITH RANDOM OUTCOMES
-          SAMPLED FROM THE MODEL&apos;S W/D/L PROBABILITIES.
-        </p>
+    <div className="sec">
+      <div className="section-title">MONTE CARLO SIMULATOR</div>
+      <div style={{ fontSize: 7, color: 'var(--color-muted)', lineHeight: 2, marginBottom: 16 }}>
+        EACH SIMULATION RUNS THE FULL BRACKET<br />
+        WITH W/D/L PROBABILITIES FROM THE MODEL.
       </div>
 
-      <div className="fade-in delay-1" style={{ border: '1px solid var(--color-brd)', boxShadow: '4px 4px 0 var(--color-brd)', padding: 20, marginBottom: 24 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
-          <label style={{ fontSize: 7, color: 'var(--color-txt)', minWidth: 96 }}>SIMULATIONS</label>
-          <input
-            type="range"
-            min={100} max={5000} step={100}
-            value={n}
-            onChange={e => setN(Number(e.target.value))}
-            style={{ flex: 1, accentColor: 'var(--color-g)' }}
-          />
-          <span style={{ fontSize: 10, color: 'var(--color-g)', minWidth: 48, textAlign: 'right' }}>{n.toLocaleString()}</span>
-        </div>
-        <Btn variant="green" onClick={run} disabled={running}>
-          {running ? '⏳ RUNNING...' : `RUN ${n.toLocaleString()} SIMULATIONS →`}
-        </Btn>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16, flexWrap: 'wrap' }}>
+        <div style={{ fontSize: 7, color: 'var(--color-muted)' }}>SIMULATIONS</div>
+        <div style={{ fontSize: 14, color: 'var(--color-b)' }}>{n.toLocaleString()}</div>
+        <input
+          type="range" min={100} max={5000} step={100} value={n}
+          onChange={e => setN(Number(e.target.value))}
+          style={{ accentColor: 'var(--color-g)', width: 120 }}
+        />
+        <button
+          className="px-btn"
+          onClick={run}
+          disabled={running}
+          style={{
+            fontFamily: 'inherit', fontSize: 8, padding: '10px 16px',
+            background: 'var(--color-g)', color: '#fff', border: 'none',
+            boxShadow: '4px 4px 0 var(--color-g-sh)',
+          }}
+        >
+          {running ? '⏳ RUNNING...' : '▶ RUN SIMULATIONS'}
+        </button>
       </div>
 
-      {sorted && (
-        <div className="fade-in delay-2">
-          <SectionLabel>Champion Distribution</SectionLabel>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {sorted.map(([team, count], i) => {
-              const t = teamData(team)
-              const pct = ((count / n) * 100).toFixed(1)
-              const barWidth = (count / maxCount) * 100
-              return (
-                <div key={team} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <span style={{ fontSize: 6, color: 'var(--color-muted)', minWidth: 16, textAlign: 'right' }}>{i + 1}</span>
-                  <span style={{ fontSize: 16, minWidth: 24 }}>{t?.flag}</span>
-                  <span style={{ fontSize: 7, color: 'var(--color-txt)', minWidth: 96 }}>{team}</span>
-                  <div style={{ flex: 1 }}>
-                    <PixelBar value={barWidth} color="var(--color-g-mid)" />
-                  </div>
-                  <span style={{ fontSize: 7, color: 'var(--color-g)', minWidth: 36, textAlign: 'right' }}>{pct}%</span>
-                  <span style={{ fontSize: 6, color: 'var(--color-muted)', minWidth: 32, textAlign: 'right' }}>{count}×</span>
-                </div>
-              )
-            })}
+      {sorted ? (
+        <>
+          {sorted.map(([team, count], i) => {
+            const t = teamData(team)
+            const pct = Math.round((count / n) * 100)
+            return (
+              <div key={team} className="mc-row">
+                <div style={{ fontSize: 7, color: 'var(--color-muted)', textAlign: 'center' }}>{i + 1}</div>
+                <div style={{ fontSize: 7 }}>{t?.flag} {team.slice(0, 10)}</div>
+                <PixelBar value={Math.round((count / maxCount) * 100)} color={BAR_COLORS[i]} />
+                <div style={{ fontSize: 7, color: 'var(--color-g)', textAlign: 'right' }}>{pct}%</div>
+              </div>
+            )
+          })}
+          <div style={{ fontSize: 6, color: 'var(--color-muted)', marginTop: 12, lineHeight: 2 }}>
+            {n.toLocaleString()} SIMULATIONS COMPLETE.<br />
+            45% VARIANCE IS UNMODELLED NOISE.
           </div>
-          <p style={{ marginTop: 20, fontSize: 6, color: 'var(--color-muted)', lineHeight: 2 }}>
-            {n} SIMULATIONS COMPLETE. 45% VARIANCE IS UNMODELLED NOISE.
-          </p>
+        </>
+      ) : (
+        <div style={{ fontSize: 7, color: 'var(--color-muted)', padding: '12px 0' }}>
+          PRESS RUN TO SIMULATE THE TOURNAMENT...
         </div>
       )}
     </div>

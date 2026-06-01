@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import SectionLabel from '@/components/ui/SectionLabel'
-import MatchCard from '@/components/match/MatchCard'
+import { matchP, teamData } from '@/lib/klement'
 import { ROUNDS, ROUND_LABELS } from '@/lib/fixtures'
 
 const ROUND_ORDER = ['r32', 'r16', 'qf', 'sf', 'final'] as const
@@ -16,62 +15,69 @@ export default async function KnockoutPage({ params }: { params: Promise<{ round
   if (!(round in ROUNDS)) notFound()
 
   const matches = ROUNDS[round as Round]
-  const label = ROUND_LABELS[round]
   const isFinal = round === 'final'
-  const currentIdx = ROUND_ORDER.indexOf(round as Round)
 
   return (
-    <div style={{ maxWidth: 720, margin: '0 auto', padding: '32px 24px' }}>
-      <div className="fade-in" style={{ marginBottom: 24 }}>
-        <SectionLabel>Knockout Stage</SectionLabel>
-        <h1 style={{ fontSize: 14, color: isFinal ? 'var(--color-g)' : 'var(--color-r)', marginTop: 4 }}>
-          {isFinal ? '🏆 ' : ''}{label.toUpperCase()}
-        </h1>
-        {isFinal && (
-          <p style={{ fontSize: 7, color: 'var(--color-muted)', lineHeight: 2, marginTop: 8 }}>
-            KLEMENT&apos;S PREDICTED FINAL — THE MODEL&apos;S HEADLINE CALL.
-          </p>
-        )}
-      </div>
-
+    <div>
       {/* Round tabs */}
-      <nav className="fade-in delay-1" style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 24 }}>
-        {ROUND_ORDER.map((r, i) => (
+      <div className="ko-tabs">
+        {ROUND_ORDER.map(r => (
           <Link
             key={r}
             href={`/knockout/${r}`}
-            style={{
-              padding: '6px 10px',
-              fontSize: 6,
-              textDecoration: 'none',
-              fontFamily: 'inherit',
-              background: r === round ? 'var(--color-r-bg)' : 'var(--color-surf)',
-              color: r === round ? 'var(--color-r)' : i < currentIdx ? 'var(--color-muted)' : 'var(--color-txt)',
-              border: r === round ? '1px solid var(--color-r-sh)' : '1px solid var(--color-brd)',
-            }}
+            className={`ko-tab${round === r ? ' active' : ''}`}
           >
-            {ROUND_LABELS[r].toUpperCase()}
+            {r.toUpperCase()}
           </Link>
-        ))}
-      </nav>
-
-      <div className="fade-in delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {matches.map((m, i) => (
-          <MatchCard key={i} teamA={m.teamA} teamB={m.teamB} k={m.k} isFinal={isFinal} />
         ))}
       </div>
 
-      <div className="fade-in delay-3" style={{ display: 'flex', justifyContent: 'space-between', marginTop: 24, fontSize: 7 }}>
-        {currentIdx > 0 && (
-          <Link href={`/knockout/${ROUND_ORDER[currentIdx - 1]}`} style={{ color: 'var(--color-muted)', textDecoration: 'none', fontFamily: 'inherit' }}>
-            ← {ROUND_LABELS[ROUND_ORDER[currentIdx - 1]].toUpperCase()}
-          </Link>
-        )}
-        {currentIdx < ROUND_ORDER.length - 1 && (
-          <Link href={`/knockout/${ROUND_ORDER[currentIdx + 1]}`} style={{ color: 'var(--color-b)', textDecoration: 'none', fontFamily: 'inherit', marginLeft: 'auto' }}>
-            {ROUND_LABELS[ROUND_ORDER[currentIdx + 1]].toUpperCase()} →
-          </Link>
-        )}
+      <div style={{ padding: 16 }}>
+        <div style={{ fontSize: 7, color: 'var(--color-muted)', marginBottom: 14, letterSpacing: 1 }}>
+          {ROUND_LABELS[round].toUpperCase()}
+          {isFinal && <span style={{ color: 'var(--color-g)', marginLeft: 8 }}>🏆 KLEMENT&apos;S HEADLINE CALL</span>}
+        </div>
+
+        {matches.map((m, i) => {
+          const { pA, dr, pB } = matchP(m.teamA, m.teamB)
+          const pAp = Math.round(pA * 100)
+          const drp = Math.round(dr * 100)
+          const pBp = Math.round(pB * 100)
+          const tA = teamData(m.teamA)
+          const tB = teamData(m.teamB)
+          const pickIsA = m.k === m.teamA
+
+          return (
+            <div
+              key={i}
+              className="ko-match"
+              style={isFinal ? { border: `2px solid var(--color-g)`, boxShadow: `4px 4px 0 var(--color-g-sh)` } : {}}
+            >
+              {/* Team A */}
+              <div>
+                <span style={{ fontSize: 16, display: 'block' }}>{tA?.flag ?? '🏳'}</span>
+                <div style={{ fontSize: 7, lineHeight: 2 }}>{m.teamA}</div>
+                <div style={{ fontSize: 5, color: 'var(--color-muted)' }}>{tA?.conf}</div>
+                {pickIsA && <span className="k-badge">K✓</span>}
+              </div>
+
+              {/* WDL mini bar */}
+              <div className="ko-mini-bar">
+                <div style={{ flex: pAp, background: 'var(--color-r)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 6 }}>{pAp}%</div>
+                <div style={{ flex: drp, background: 'var(--color-surf)', color: 'var(--color-muted)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 6, borderLeft: '1px solid var(--color-brd)', borderRight: '1px solid var(--color-brd)' }}>{drp}%</div>
+                <div style={{ flex: pBp, background: 'var(--color-b)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 6 }}>{pBp}%</div>
+              </div>
+
+              {/* Team B */}
+              <div style={{ textAlign: 'right' }}>
+                <span style={{ fontSize: 16, display: 'block', textAlign: 'right' }}>{tB?.flag ?? '🏳'}</span>
+                <div style={{ fontSize: 7, lineHeight: 2 }}>{m.teamB}</div>
+                <div style={{ fontSize: 5, color: 'var(--color-muted)' }}>{tB?.conf}</div>
+                {!pickIsA && m.k === m.teamB && <span className="k-badge">K✓</span>}
+              </div>
+            </div>
+          )
+        })}
       </div>
     </div>
   )

@@ -1,6 +1,4 @@
 import { matchP, teamNames, sc, teamData } from '@/lib/klement'
-import SectionLabel from '@/components/ui/SectionLabel'
-import WDLBar from '@/components/ui/WDLBar'
 
 interface Props {
   name: string
@@ -13,19 +11,25 @@ export default function H2HList({ name }: Props) {
     .slice(0, 6)
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-      <SectionLabel>Head-to-Head vs Top Teams</SectionLabel>
+    <div>
+      <div className="section-title">HEAD-TO-HEAD</div>
       {opponents.map(opp => {
         const { pA, dr, pB } = matchP(name, opp)
+        const pAp = Math.round(pA * 100)
+        const drp = Math.round(dr * 100)
+        const pBp = Math.round(pB * 100)
         const t = teamData(opp)
         return (
-          <div key={opp} style={{ border: '1px solid var(--color-brd)', borderLeft: '3px solid var(--color-b)', boxShadow: '3px 3px 0 var(--color-brd)', padding: 12, background: 'var(--color-bg)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, fontSize: 8 }}>
-              <span style={{ color: 'var(--color-txt)' }}>{name}</span>
-              <span style={{ fontSize: 16 }}>{t?.flag}</span>
-              <span style={{ color: 'var(--color-txt)' }}>{opp}</span>
+          <div key={opp} className="h2h-row">
+            <div style={{ fontSize: 7 }}>{teamData(name)?.flag} {name.slice(0, 8)}</div>
+            <div className="h2h-bar">
+              <div className="h2h-a" style={{ flex: pAp }}>{pAp}%</div>
+              <div className="h2h-d" style={{ flex: drp }}>{drp}%</div>
+              <div className="h2h-b" style={{ flex: pBp }}>{pBp}%</div>
             </div>
-            <WDLBar pA={pA} dr={dr} pB={pB} labelA={name} labelB={opp} />
+            <div style={{ fontSize: 6, color: 'var(--color-muted)', textAlign: 'right' }}>
+              vs {t?.flag} {opp.slice(0, 8)}
+            </div>
           </div>
         )
       })}

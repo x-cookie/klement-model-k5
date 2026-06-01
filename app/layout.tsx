@@ -21,6 +21,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen flex flex-col" style={{ background: 'var(--color-bg)' }}>
         <Nav />
         <main className="flex-1">{children}</main>
+        <footer className="footer">
+          <span style={{ fontSize: 6, color: 'var(--color-muted)' }}>
+            © 2026 KLEMENT MODEL · ALL SIMULATIONS RUN IN-BROWSER
+          </span>
+          <span style={{ fontSize: 6, color: 'var(--color-r)' }}>PANMURE LIBERUM ▲</span>
+        </footer>
       </body>
     </html>
   )
