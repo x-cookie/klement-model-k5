@@ -1,44 +1,11 @@
 // components/ui/PolymarketBtn.tsx
 
+import Image from 'next/image'
 import { pmUrl } from '@/lib/polymarket'
 
 interface Props {
   teamName?: string
   variant?: 'champion' | 'match'
-}
-
-function PolymarketIcon() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: 7, flexShrink: 0 }}
-    >
-      {/* Outer frame */}
-      <rect x="1" y="1" width="14" height="14" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      {/* Upper right-pointing triangle */}
-      <path
-        d="M3.5 3.5 L12.5 8 L3.5 7 Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        fill="none"
-        strokeLinejoin="miter"
-        strokeLinecap="square"
-      />
-      {/* Lower right-pointing triangle */}
-      <path
-        d="M3.5 9 L12.5 8 L3.5 12.5 Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        fill="none"
-        strokeLinejoin="miter"
-        strokeLinecap="square"
-      />
-    </svg>
-  )
 }
 
 export default function PolymarketBtn({ teamName, variant: _variant = 'match' }: Props) {
@@ -61,13 +28,20 @@ export default function PolymarketBtn({ teamName, variant: _variant = 'match' }:
           boxShadow: '3px 3px 0 var(--color-b-sh)',
           display: 'inline-flex',
           alignItems: 'center',
+          gap: 8,
           textDecoration: 'none',
           letterSpacing: '0.5px',
           cursor: 'pointer',
         }}
       >
-        <PolymarketIcon />
         Trade on Polymarket
+        <Image
+          src="/poly-logo.jpeg"
+          alt="Polymarket"
+          width={18}
+          height={18}
+          style={{ display: 'block', borderRadius: 3 }}
+        />
       </a>
       <div style={{
         fontSize: 6,
