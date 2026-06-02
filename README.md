@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="public/mascot.jpeg" alt="WC26 Klement" width="180" style="margin-bottom:16px" />
 
 # WC26 Klement
+<img src="public/banner.jpeg" alt="WC26 Klement" style="margin-bottom:16px" />
 
 **An econometric model that called 2014, 2018 and 2022 correctly — now running on all 48 teams.**
 
