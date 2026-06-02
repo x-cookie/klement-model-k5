@@ -6,6 +6,8 @@ import FlagImg from '@/components/ui/FlagImg'
 import FactorBreakdown from '@/components/team/FactorBreakdown'
 import TeamSelect from '@/components/ui/TeamSelect'
 import PixelParticles from '@/components/ui/PixelParticles'
+import PolymarketBtn from '@/components/ui/PolymarketBtn'
+import { PM_GAP_THRESHOLD } from '@/lib/polymarket'
 
 const allTeams = teamNames().sort()
 const SIM_N = 500
@@ -78,6 +80,13 @@ export default function VersusPage() {
         </div>
 
         <WDLBar pA={pA} dr={dr} pB={pB} labelA={teamA} labelB={teamB} />
+
+        {Math.abs(pA - pB) >= PM_GAP_THRESHOLD && (
+          <PolymarketBtn
+            teamName={pA > pB ? teamA : teamB}
+            variant="match"
+          />
+        )}
 
         {/* Upset badge — click to run quick simulation */}
         {upset && (

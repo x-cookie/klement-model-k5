@@ -3,6 +3,7 @@ import Image from 'next/image'
 import PixelBar from '@/components/ui/PixelBar'
 import PixelParticles from '@/components/ui/PixelParticles'
 import FlagImg from '@/components/ui/FlagImg'
+import PolymarketBtn from '@/components/ui/PolymarketBtn'
 
 const factors = [
   { label: 'FIFA RANKING', pct: 45, color: 'var(--color-r)' },
@@ -136,6 +137,10 @@ export default function LandingPage() {
                 FIRST WORLD CUP TITLE IN HISTORY<br />
                 PATH: MOROCCO → CANADA → FRANCE → ARGENTINA → PORTUGAL
               </div>
+              <PolymarketBtn
+                teamName="Netherlands"
+                variant="champion"
+              />
             </div>
           </div>
         </div>
